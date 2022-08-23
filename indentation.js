@@ -15,3 +15,6 @@ function fizzbuzz() {
         }
     }
 }
+
+// running the function to see the results
+fizzbuzz();
