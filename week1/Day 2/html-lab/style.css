@@ -1,0 +1,63 @@
+/* 
+A good way to see object sizes is to add a background color border box to all
+to simplify sizing of elements 
+We also remove the default margin
+float makes the parent collapse unless we give them a height of their own
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+header {
+    height: 70px;
+}
+
+#logo {
+    float: left;
+    position: relative;
+    margin: 20px 30px 20px 30px;
+}
+
+.logoimg {
+    height: 30px;
+}
+
+#menu {
+    float: right;
+    position: relative;
+    margin: 20px 30px 20px 30px;
+}
+
+#middle {
+    height: 400px;
+    background-image: url(assets/spices.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+#welcometxt {
+    color: white;
+    font-family: Serif;
+    font-style: italic;
+    text-align: center;
+    float: left;
+    position: relative;
+    left: 1%;
+    top: 40%;
+}
+
+#getStarted {
+    position: relative;
+    float: right;
+    top: 45%;
+    right: 35%;
+    background-color: gold;
+    color: orange;
+    font-family: serif;
+    text-align: center;
+    padding: 6px 75px;
+    border: 5px solid orange;
+    border-radius: 50vh;
+}

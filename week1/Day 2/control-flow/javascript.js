@@ -2,7 +2,8 @@
 
 let argument = NaN; // Assign your argument here
 
-// console.log(argument); //for comparison between argument and results
+console.log(argument); //for comparison between argument and results
+console.log(typeof argument);
 
 function logType(argument) {
     if (typeof argument === "undefined") {
@@ -16,7 +17,7 @@ function logType(argument) {
     } else if (typeof argument === "string") {
         console.log("string!");
     } else if (typeof argument === "boolean") {
-        console.log((b = "boolean!"));
+        console.log("boolean!");
     } else if (typeof argument === "bigint") {
         console.log("bigint!");
     } else if (typeof argument === "function") {
