@@ -9,6 +9,7 @@ Float makes the parent collapse unless we give them a height of their own.
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: serif;
 }
 
 body {
@@ -49,10 +50,11 @@ header {
     font-style: italic;
     text-align: center;
     padding-top: 150px;
+    font-size: 40px;
 }
 
 #getStarted {
-    width: 230px;
+    width: 260px;
     margin: 20px auto;
     background-color: gold;
     color: #cc6601;
@@ -74,44 +76,31 @@ header {
     width: 50%;
 }
 
-#quadrant1 {
-    background-color: blue;
-}
-
-#quadrant2 {
-    background-color: green;
-}
-
-#quadrant3 {
-    background-color: orange;
-}
-
-#quadrant4 {
-    background-color: yellow;
-}
-
 .textleft,
 .textright {
     margin-top: 40px;
     margin-right: 20px;
+    width: 280px;
+    font-family: "Arnoldboecklin", serif;
 }
 
 .textleft {
     float: right;
-    width: 300px;
-    background-color: red;
 }
 
 .textright {
     float: left;
-    width: 300px;
-    background-color: brown;
+}
+
+.textleft p,
+.textright p {
+    font-size: 18px;
 }
 
 .imgleft,
 .imgright {
     padding: 40px 20px;
-    width: 80px;
+    width: 85px;
 }
 
 .imgleft {
