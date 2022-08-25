@@ -50,6 +50,7 @@ header {
     font-style: italic;
     text-align: center;
     padding-top: 150px;
+    margin: 0px 50px;
     font-size: 40px;
 }
 
@@ -120,4 +121,47 @@ footer p {
     color: white;
     padding-top: 10px;
     margin-left: 50px;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 800px) {
+    #bottom {
+        height: 540px;
+    }
+
+    .quadrant {
+        margin: auto;
+        width: fit-content;
+        float: none;
+    }
+
+    .textleft,
+    .textright {
+        width: 340px;
+    }
+    .imgleft,
+    .imgright {
+        padding-left: 20px;
+        width: 85px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: rgb(34, 34, 34);
+    }
+
+    #getStarted {
+        background-color: rgb(34, 34, 34);
+    }
+
+    #bottom {
+        background-color: rgb(34, 34, 34);
+    }
+
+    .textleft,
+    .textright {
+        color: white;
+    }
 }
