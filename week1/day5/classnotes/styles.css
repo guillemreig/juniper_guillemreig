@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+}
+
+.head {
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 5px solid black;
+    width: 200px;
+    height: 200px;
+}
+
+.body {
+    background-color: black;
+    height: 300px;
+    width: 5px;
+
+    margin: 0 auto;
+}
+
+.arm {
+    background-color: black;
+    height: 200px;
+    width: 5px;
+    margin: 0 auto;
+}
+
+.arm.left {
+    background-color: blue;
+    position: relative;
+    top: -400px;
+    transform: rotate(-60deg);
+    transform-origin: bottom center;
+}
+
+.arm.right {
+    background-color: red;
+    position: relative;
+    top: -600px;
+    transform: rotate(60deg);
+    transform-origin: bottom center;
+}
+.leg {
+    background-color: black;
+    height: 300px;
+    width: 5px;
+    margin: 0 auto;
+}
+
+.leg.left {
+    background-color: blue;
+    position: relative;
+    top: -700px;
+    transform: rotate(-150deg);
+    transform-origin: bottom center;
+}
+
+.leg.right {
+    background-color: red;
+    position: relative;
+    top: -1000px;
+    transform: rotate(150deg);
+    transform-origin: bottom center;
+}

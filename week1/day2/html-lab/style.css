@@ -1,0 +1,167 @@
+/* 
+A good way to see object sizes and limits is to give them a background color.
+We assign 'border-box' to all to simplify sizing of elements.
+We also remove the default 'margin' and 'padding'.
+Float makes the parent collapse unless we give them a height of their own.
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: serif;
+}
+
+body {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+header {
+    height: 70px;
+}
+
+#logo {
+    float: left;
+    position: relative;
+    margin: 20px 30px;
+}
+
+.logoimg {
+    height: 30px;
+}
+
+#menu {
+    float: right;
+    position: relative;
+    margin: 20px 30px 20px 30px;
+}
+
+#middle {
+    height: 410px;
+    background-image: url(assets/spices.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+#welcometxt {
+    color: white;
+    font-family: Serif;
+    font-style: italic;
+    text-align: center;
+    padding-top: 150px;
+    margin: 0px 50px;
+    font-size: 40px;
+}
+
+#getStarted {
+    width: 260px;
+    margin: 20px auto;
+    background-color: gold;
+    color: #cc6601;
+    font-family: serif;
+    text-align: center;
+    padding: 6px 15px;
+    border: 3px solid #cc6601;
+    border-radius: 50vh;
+}
+
+#bottom {
+    height: 290px;
+    background-color: silver;
+}
+
+.quadrant {
+    float: left;
+    height: 125px;
+    width: 50%;
+}
+
+.textleft,
+.textright {
+    margin-top: 40px;
+    margin-right: 20px;
+    width: 280px;
+    font-family: "Arnoldboecklin", serif;
+}
+
+.textleft {
+    float: right;
+}
+
+.textright {
+    float: left;
+}
+
+.textleft p,
+.textright p {
+    font-size: 18px;
+}
+
+.imgleft,
+.imgright {
+    padding: 40px 20px;
+    width: 85px;
+}
+
+.imgleft {
+    float: right;
+}
+
+.imgright {
+    float: left;
+}
+
+footer {
+    height: 40px;
+    background-color: grey;
+}
+
+footer p {
+    color: white;
+    padding-top: 10px;
+    margin-left: 50px;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 800px) {
+    #bottom {
+        height: 540px;
+    }
+
+    .quadrant {
+        margin: auto;
+        width: fit-content;
+        float: none;
+    }
+
+    .textleft,
+    .textright {
+        width: 340px;
+    }
+    .imgleft,
+    .imgright {
+        padding-left: 20px;
+        width: 85px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: rgb(34, 34, 34);
+    }
+
+    #getStarted {
+        background-color: rgb(34, 34, 34);
+    }
+
+    #bottom {
+        background-color: rgb(34, 34, 34);
+    }
+
+    .textleft,
+    .textright {
+        color: white;
+    }
+}

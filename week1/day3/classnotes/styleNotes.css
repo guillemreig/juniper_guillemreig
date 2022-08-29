@@ -1,0 +1,180 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    padding-block: 20px;
+    line-height: 150px;
+}
+
+header img {
+    height: 150px;
+    float: left;
+}
+
+header nav {
+    float: right;
+}
+
+header nav ul li {
+    float: left;
+    list-style: none;
+    margin-left: 10px;
+}
+
+header nav ul li:last-child a {
+    background-color: blue;
+    color: white;
+    padding: 10px 30px;
+}
+
+hr {
+    clear: both;
+}
+
+main {
+    clear: both;
+    margin-bottom: 20px;
+}
+
+footer {
+    clear: both;
+}
+
+.info,
+.facts {
+    float: left;
+    padding: 20px;
+}
+
+.info {
+    width: 60%;
+    min-width: 400px;
+    padding-left: 0;
+}
+
+.facts {
+    width: 40%;
+    /* float: right; */
+    border: 1px dashed gray;
+    margin-bottom: 30px;
+}
+
+details {
+    float: left;
+    width: 33%;
+    padding: 20px;
+}
+
+summary {
+    background-color: aqua;
+    padding: 10px;
+    width: 33.333333%;
+}
+
+/* Animation */
+
+.anim1 {
+    clear: both;
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    transition-duration: 300ms;
+    transition-property: all;
+}
+
+.anim1:hover {
+    border-radius: 50%;
+    box-shadow: 2px 5px 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+.anim1:active {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+    transform: translate(2px, 5px);
+}
+
+.anim2 {
+    width: 100%;
+    height: 300px;
+    background-color: pink;
+    text-align: center;
+    line-height: 300px;
+}
+
+.anim2 h2:before {
+    content: "🎊";
+}
+
+.anim2 h2:after {
+    content: "🎉";
+}
+
+.anim2:hover {
+    animation-duration: 1.5s;
+    animation-name: clubbing;
+    animation-iteration-count: infinite;
+}
+
+@keyframes clubbing {
+    0% {
+        background-color: blue;
+        transform: scale(1);
+    }
+
+    20% {
+        background-color: yellow;
+        transform: scale(0.8);
+    }
+
+    40% {
+        background-color: red;
+        transform: scale(1.1);
+    }
+
+    60% {
+        background-color: green;
+        transform: scale(0.4);
+    }
+
+    80% {
+        background-color: magenta;
+        transform: scale(1.2);
+    }
+
+    100% {
+        background-color: black;
+        transform: scale(1);
+    }
+}
+
+.anim3 {
+    width: 100px;
+    height: 100px;
+    background-color: blueviolet;
+    animation: 2s infinite moving;
+    margin-bottom: 150px;
+}
+
+@keyframes moving {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(900px, 0);
+    }
+
+    50% {
+        transform: translate(900px, 100%);
+    }
+
+    75% {
+        transform: translate(0px, 100%);
+    }
+}

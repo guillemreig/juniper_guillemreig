@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+/*
+#box {
+    height: 100px;
+    width: 100px;
+    background-color: darkcyan;
+    position: absolute;
+    left: 50%;
+}
+*/
+#headlines {
+    white-space: nowrap;
+    position: absolute;
+    left: 100%;
+}
+
+#ticker {
+    overflow-x: hidden;
+    position: relative;
+    height: 1.5em;
+    width: 100%;
+    border: 3px dotted cornflowerblue;
+}
+
+#headlines a {
+    padding-right: 30px;
+}

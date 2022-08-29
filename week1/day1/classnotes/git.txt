@@ -1,0 +1,33 @@
+GIT
+
+git status - Check what changes you have in your repository.
+
+git add (file_name or . for all) - The add command adds your changes to the staging area. This means they are ready to be committed.
+
+git commit -m "our comment" - Commit the files that you have worked on and that you have added, but the commit is still just on your local computer.
+
+git push -u <remote_name> <local_branch_name> - By pushing, you can send your commits to a remote repository.
+
+git pull <remote_name> <local_branch_name> - This pulls commits from the remote repo that is located at origin.
+
+
+Branches:
+
+git checkout -b <my_new_branch> - To make a new branch.
+
+git checkout <branch_i_want> - To switch between branches.
+
+git branch - To check your branches, and to see which one you are on.
+
+git branch -D <branch_to_delete> - To delete a local branch. You may also need the -f flag if you have unmerged changes. It may also prompt you to use the -D.
+
+git checkout -b <my_new_branch> origin/master - Will create the new branch and automatically have it set to pull from master.
+
+git remote -v - Check where the remote for your git repo is.
+
+git push origin :<branch_name> - Delete a REMOTE branch.
+
+git clone <remote_repo> - Clone a remote branch to your local computer. This is what you use if you want to copy code from github onto your computer.
+
+
+git cheatsheet: https://www.git-tower.com/blog/git-cheat-sheet/
