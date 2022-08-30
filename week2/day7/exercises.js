@@ -24,11 +24,13 @@ we take increased devotion to that cause for which they gave the last full measu
 that these dead shall not have died in vain -- that this nation, under God, shall have a new birth of freedom -- and that \
 government of the people, by the people, for the people, shall not perish from the earth.";
 
-//textArea.value = ""; // We empty the text area (not necessary if already empty)
+textArea.value = ""; // We empty the text area (not necessary if already empty)
 
 document.addEventListener("keydown", function (e) {
-    e.preventDefault(); // Prevents the text area to be filled with the keyboard input
-    textArea.value += address[textArea.value.length]; // And instead adds a character from the 'address' text. We use the current text lenghth as index value.
+    if (e.keyCode !== 8) {
+        e.preventDefault(); // Prevents the text area to be filled with the keyboard input
+        textArea.value += address[textArea.value.length]; // And instead adds a character from the 'address' text. We use the current text lenghth as index value.
+    } // This 'if' checks if the 'backspace' key was pushed. If it was, it lets the 'backspace' work normally
 });
 
 // Part 3
