@@ -80,11 +80,11 @@ console.log(typeof e); //logs 'undefined'
 //It has a length property whose value corresponds to the number of parameters that was passed to the function.
 // It also has properties whose names are integers and hold the values that were passed as parameters.
 
-(function fn(a, b, c) {
+function fn(a, b, c) {
     console.log(arguments[0] == a); //logs 'true'
     console.log(arguments[1] == b); //logs 'true'
     console.log(arguments[2] == c); //logs 'true'
-})();
+}
 
 var exclaim = function (a) {
     var exclamation = a;
@@ -96,3 +96,85 @@ var exclaim = function (a) {
 
 exclaim("hello"); //'hello!!!'
 exclaim("hello", "goodbye"); //'goodbye!!!'
+
+console.log();
+
+// Nested functions
+// Functions can be defined in other functions.
+// Functions that are defined in other functions have access to the local scope of the functions they are defined in.
+
+var outer = function () {
+    var f = 100;
+
+    var inner = function () {
+        var g = "hello";
+        console.log(f, g);
+    };
+
+    inner(); //logs 'number', 'string'
+    console.log(f, typeof g); //logs 'number', 'undefined'
+};
+outer();
+
+console.log();
+
+var getCounter = function (num) {
+    console.log("num at getCounter(3) :", num);
+    return function () {
+        console.log("num pre return :", num);
+        return console.log("return num++ :", num++); // First it returns 'num', then executes ++ to update 'num' value!
+    };
+};
+
+var counter = getCounter(3); // var 'num' = 3 created inside getCounter local scope. The function defined inside getCounter can acces it.
+counter(); //3
+counter(); //4
+counter(); //5
+
+console.log();
+
+// Callbacks
+// Functions that are passed to other functions are often called callbacks.
+
+setTimeout(function () {
+    console.log("Delayed hello!");
+}, 1000);
+
+// The built-in function setTimeout takes a callback as its first parameter. The second parameter is a number of milliseconds.
+// After the number of milliseconds passes, setTimeout calls the callback.
+
+// Recursion
+// Functions can call themselves! This is called recursion.
+
+var cutDownToSize = function (str) {
+    if (str.length > 3) {
+        console.log(str);
+        return cutDownToSize(str.slice(0, -1)); // Each recursion cuts off the last character of the string
+    }
+    return str; // Once a condition is met, the recursion loop ends by not calling the recursion again
+};
+
+console.log(cutDownToSize("teacher")); //'tea'
+
+//  As with loops, when you use recursion you need to be certain that it will not continue infinitely.
+
+console.log();
+
+// Anonymous functions and named function expressions
+// Functions without name are are 'anonymous' functions.
+// What if you want to define a recursive function using a function expression? You can use a named function expression.
+// The name will be in the local scope of the function it names and inaccessible to the outer scope.
+
+var fn = function me(str) {
+    console.log("str :", str);
+    if (!str) {
+        return me("hello");
+    }
+    return str + "!";
+};
+
+console.log(fn("hi")); //'hi!'
+console.log(fn()); // 'hello!';
+
+typeof fn; //'function';
+typeof me; //'undefined'

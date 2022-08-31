@@ -21,7 +21,7 @@ console.log("links :", links);
 console.log("tests :", tests);
 console.log("selectLi :", selectLi);
 */
-/*
+
 var ex = document.querySelectorAll("#exercise>li");
 
 ex.forEach(function () {
@@ -50,8 +50,6 @@ newHeader.append(headerH1, headerH3); // 'append' accepts many
 
 document.body.prepend(newHeader);
 
-*/
-/*
 // Exercises
 // Part 1
 function changeStyle(input) {
@@ -92,68 +90,3 @@ function awesomeFunc() {
 } // Is it supposed to look like this?
 
 awesomeFunc(); // For testing
-*/
-
-// Ticker
-/*
-(function () {
-    var box = document.getElementById("box");
-    var left = box.offsetLeft;
-
-    console.log(box);
-    console.log("original left position :", left);
-
-    function moveBox() {
-        left--;
-
-        if (left <= -150) {
-            console.log("Let's bring back the box!");
-            left = 400;
-        }
-
-        console.log("left after decrease :", left);
-        box.style.left = left + "px"; // This moves the box
-        //requestAnimationFrame(moveBox);
-    }
-
-    moveBox();
-    //
-    //
-    //
-    //
-    //
-})();
-*/
-(function () {
-    var headlines = document.getElementById("headlines");
-    var left = headlines.offsetLeft;
-    var links = document.getElementsByTagName("a");
-
-    console.log("headlines :", headlines);
-    console.log("links :", links);
-
-    console.log("left position of headlines :", left);
-
-    function moveHeadlines() {
-        left--;
-
-        // This will run when the first link is completely offscreen
-        if (left <= -links[0].offsetWidth) {
-            console.log("1st link offscreen!");
-            var linkWidth = links[0].offsetWidth;
-            headlines.appendChild(document.getElementsByTagName("a")[0]); // Remove the first link and make it the last
-            left = left + linkWidth;
-        }
-
-        console.log("left value after decrease :", left);
-        headlines.style.left = left + "px"; // This moves the box
-        requestAnimationFrame(moveHeadlines);
-    }
-
-    moveHeadlines();
-    //
-    //
-    //
-    //
-    //
-})();
