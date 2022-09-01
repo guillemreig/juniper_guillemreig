@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+#kittyDiv {
+    height: 600px;
+    position: relative;
+    overflow: hidden; /* This prevents the images from overflowing outside the container div */
+}
+
+#kittyDiv img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents the image from squeezing */
+    transform: translateX(100%); /* This moves the images outside the screen */
+}
+
+#kittyDiv img.onScreen {
+    transform: translateX(0%); /* This overrides the previous translateX */
+    transition-property: transform;
+    transition-duration: 3s;
+}
+
+#kittyDiv img.exit-left {
+    transform: translateX(-100%);
+    transition-property: transform;
+    transition-duration: 3s;
+}
