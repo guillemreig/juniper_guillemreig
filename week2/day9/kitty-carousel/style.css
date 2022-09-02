@@ -29,3 +29,28 @@
     transition-property: transform;
     transition-duration: 3s;
 }
+
+.dot {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid pink;
+    margin: 10px;
+    transition: background-color 3s ease;
+}
+
+#dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: 550px;
+}
+
+.on {
+    background-color: pink;
+}
+
+.dot:hover {
+    cursor: pointer;
+}
