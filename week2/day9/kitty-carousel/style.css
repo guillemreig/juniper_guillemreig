@@ -4,10 +4,17 @@
     margin: 0;
 }
 
+body {
+    max-height: 100vmax;
+}
+
 #kittyDiv {
-    height: 600px;
+    height: 100vh;
     position: relative;
     overflow: hidden; /* This prevents the images from overflowing outside the container div */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #kittyDiv img {
@@ -21,13 +28,19 @@
 #kittyDiv img.onScreen {
     transform: translateX(0%); /* This overrides the previous translateX */
     transition-property: transform;
-    transition-duration: 3s;
+    transition-duration: 1s;
 }
 
-#kittyDiv img.exit-left {
+#kittyDiv img.onLeft {
     transform: translateX(-100%);
     transition-property: transform;
-    transition-duration: 3s;
+    transition-duration: 1s;
+}
+
+#kittyDiv img.onRight {
+    transform: translateX(100%);
+    transition-property: transform;
+    transition-duration: 1s;
 }
 
 .dot {
@@ -44,7 +57,7 @@
     justify-content: center;
     width: 100%;
     position: absolute;
-    top: 550px;
+    bottom: 50px;
 }
 
 .on {
