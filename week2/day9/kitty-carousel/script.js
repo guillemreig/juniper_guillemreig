@@ -52,9 +52,12 @@
             kitties[currKitty].classList.remove("onLeft");
             dots[currKitty].classList.add("on"); // Its dot turns on
 
-            kitties[(3 + currKitty) % 4].style.transitionDuration = "0";
-            kitties[(3 + currKitty) % 4].classList.add("onLeft"); // 4. Another kitty goes left ready for consecutive swipe right
-            kitties[(3 + currKitty) % 4].style.transitionDuration = "1";
+            kitties[(3 + currKitty) % 4].classList.add("instantLeft"); // 4. Another kitty goes left ready for consecutive swipe right
+            var instantLeftKitty = (3 + currKitty) % 4;
+            setTimeout(function () {
+                kitties[instantLeftKitty].classList.add("onLeft");
+                kitties[instantLeftKitty].classList.remove("instantLeft");
+            }, 1000);
 
             swipeRight = false;
 
@@ -81,9 +84,9 @@
                 kitties[currKitty].classList.remove("onScreen");
                 dots[currKitty].classList.remove("on"); // Its dot truns off
 
-                var resetKitten = currKitty;
+                var resetKitty = currKitty;
                 setTimeout(function () {
-                    kitties[resetKitten].classList.remove("onLeft"); // Removes "onLeft" to original kitten after transition
+                    kitties[resetKitty].classList.remove("onLeft"); // Removes "onLeft" to original kitten after transition
                 }, 1000);
 
                 currKitty = idx; // Kitten clicked is now current kitten
@@ -91,8 +94,17 @@
                 kitties[currKitty].classList.add("onScreen"); // 4. Kitty clicked begins to move in
                 dots[currKitty].classList.add("on"); // Its dot turns on
 
-                kitties[(3 + currKitty) % 4].classList.add("onLeft"); // 5. Kitty previous in line goes on the left
-                kitties[(5 + currKitty) % 4].classList.add("onRight"); // 6. Kitty next in line goes on the right (ready)
+                kitties[(3 + currKitty) % 4].classList.add("instantLeft"); // 5. Kitty previous in line goes on the left
+                var instantLeftKitty = (3 + currKitty) % 4;
+                setTimeout(function () {
+                    kitties[instantLeftKitty].classList.add("onLeft");
+                    kitties[instantLeftKitty].classList.remove("instantLeft");
+                }, 1000);
+
+                var instantRightKitty = (5 + currKitty) % 4;
+                setTimeout(function () {
+                    kitties[instantRightKitty].classList.add("onRight"); // 6. Kitty next in line goes on the right (ready)
+                }, 1000);
 
                 buttonClicked = false; // Button-triggered 'moveKitties' follow this path. 'buttonClicked' turns 'false' afterwards
 

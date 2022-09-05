@@ -37,6 +37,10 @@ body {
     transition-duration: 1s;
 }
 
+#kittyDiv img.instantLeft {
+    transform: translateX(-100%);
+}
+
 #kittyDiv img.onRight {
     transform: translateX(100%);
     transition-property: transform;
