@@ -211,74 +211,39 @@
 
     for (var i = 0; i < dots.length; i++) {
         (function () {
-            kitties[i].addEventListener(
-                "touchstart",
-                function (e) {
-                    var touchobj = e.changedTouches[0];
-                    startx = parseInt(touchobj.clientX); //
-                },
-                false
-            );
-
-            kitties[i].addEventListener(
-                "touchmove",
-                function (e) {
-                    var touchobj = e.changedTouches[0];
-                    dist = parseInt(touchobj.clientX) - startx;
-                },
-                false
-            );
-
-            kitties[i].addEventListener(
-                "touchend",
-                function (e) {
-                    if (dist > 5) {
-                        if (isTransitioning) {
-                            console.log(
-                                "Denied: Can't do it while transitioning!"
-                            );
-                            return;
-                        } else {
-                            console.log("swipe right!"); // if swipe goes from left to right call function move(left)
-                            clearTimeout(timer);
-                            swipeRight = true;
-                            moveKitties();
-                        }
-                    } else if (dist < -5) {
-                        if (isTransitioning) {
-                            console.log(
-                                "Denied: Can't do it while transitioning!"
-                            );
-                            return;
-                        } else {
-                            console.log("swipe left!"); // If swipe goes from right to left call function move(right)
-                            clearTimeout(timer);
-                            moveKitties();
-                        }
-                    }
-                    dist = 0;
-                },
-                false
-            );
-            /*
-            dots[i].addEventListener("touchstart", function (e) {
-                // If we are mid-transition, don't do anything
-                if (isTransitioning) {
-                    console.log("Denied: Can't do it while transitioning!");
-                    return;
-                } else if (e.target.classList.contains("on")) {
-                    console.log("Denied: Image already in use!");
-                    return;
-                } else {
-                    clearTimeout(timer); // 1st. Stop the carousel
-
-                    // 2nd. Bring the kitty that got clicked instead
-                    console.log("You touched dot index :", idx);
-                    buttonClicked = true;
-                    moveKitties(idx);
-                }
+            kitties[i].addEventListener("touchstart", function (e) {
+                var touchobj = e.changedTouches[0];
+                startx = parseInt(touchobj.clientX);
             });
-            */
+
+            kitties[i].addEventListener("touchmove", function (e) {
+                var touchobj = e.changedTouches[0];
+                dist = parseInt(touchobj.clientX) - startx;
+            });
+
+            kitties[i].addEventListener("touchend", function (e) {
+                if (dist > 5) {
+                    if (isTransitioning) {
+                        console.log("Denied: Can't do it while transitioning!");
+                        return;
+                    } else {
+                        console.log("swipe right!"); // if swipe goes from left to right call function move(left)
+                        clearTimeout(timer);
+                        swipeRight = true;
+                        moveKitties();
+                    }
+                } else if (dist < -5) {
+                    if (isTransitioning) {
+                        console.log("Denied: Can't do it while transitioning!");
+                        return;
+                    } else {
+                        console.log("swipe left!"); // If swipe goes from right to left call function move(right)
+                        clearTimeout(timer);
+                        moveKitties();
+                    }
+                }
+                dist = 0;
+            });
         })(i); // This is supposed to add touchscreen functionality
     }
 

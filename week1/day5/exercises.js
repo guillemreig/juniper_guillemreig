@@ -34,6 +34,8 @@ console.log();
 // Part 2
 console.log("Part 2");
 
+// Method 1
+/*
 function invertCase(string) {
     var upString = string.toUpperCase(); // Upper case version of the input string for comparison
     var loString = string.toLowerCase(); // Lower case version of the input string for comparison
@@ -48,6 +50,25 @@ function invertCase(string) {
     } // the 'for' loop checks every character of the original string and inserts in the new string the opposite case
     return mirrorString; // Once the new string is complete we return it
 }
+
+*/
+// Method 2
+
+function invertCase(string) {
+    function invert(a) {
+        switch (a) {
+            case a.toUpperCase():
+                return a.toLowerCase();
+            default:
+                return a.toUpperCase();
+        }
+    } // Creates invert function in local scope
+
+    return string
+        .split("")
+        .map((a) => invert(a))
+        .join("");
+} // We convert original string to array, apply .map method to array elements, and convert back array to string
 
 console.log(invertCase("WhAt Is Up WiTh ThAt WeIrD SpOnGeBoB MeMe!?"));
 

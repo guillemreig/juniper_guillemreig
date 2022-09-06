@@ -1,7 +1,46 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    max-width: 1000px;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    background-color: tomato;
+    border: 3px solid black;
+    min-height: 100px;
+}
+
+main {
+    background-color: silver;
+    border: 3px solid blue;
+    height: 100%;
+}
+
+footer {
+    background-color: darkorange;
+    border: 3px solid black;
+    min-height: 50px;
+}
+
 .blue {
     height: 400px;
     width: 400px;
     background-color: lightblue;
+    top: 50px;
+    left: 50px;
 }
 
 .red {

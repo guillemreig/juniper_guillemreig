@@ -1,0 +1,38 @@
+.container {
+    position: relative;
+    background-color: silver;
+}
+
+.container,
+.pane {
+    width: 530px;
+    height: 600px;
+}
+
+.pane,
+.divider {
+    position: absolute;
+}
+
+.pane {
+    user-select: none;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.divider {
+    height: 600px;
+    width: 5px;
+    background-color: grey;
+    cursor: col-resize;
+    left: 100px;
+}
+
+.rightPane {
+    background-color: red;
+}
+
+.leftPane {
+    background-color: lawngreen;
+    width: 100px;
+}
