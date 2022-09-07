@@ -1,34 +1,33 @@
 (function (countries) {
-    var $input = $("input[name=country]"); // Selects inputs with name 'country'.
+    // jQuery objects
+    var $input = $("input[name=country]"); // jQuery object of the input element
 
     var $resultsDiv = $("#results"); // The 'results' div
-    $resultsDiv.hide();
+    $resultsDiv.hide(); // Starts hidden
 
-    var filteredCountries;
-    var $resultsList;
-    var length;
+    // Global variables
+    var filteredCountries; // A 4 length array of matching countries
+    var $resultsList; // a jQuery object that contains the divs with the filtered country names
+    var length; // The length of the $resultsList
 
-    var content;
-    var highlightedElement;
-    var highlightIndex = -1;
+    var content; // The text content of the input (string)
+    var highlightIndex = -1; // The result currently highlighted. Starts at -1 so that the first element will highlight after an ArrowDown
 
-    // Event listeners on input
-
+    // Event listeners on $input
     $input
         .on("input", function () {
-            $resultsDiv.show();
-            value = this.value;
-            filteredCountries = getFilteredCountries(value); // Calls the function with 'input' contents as argument
+            $resultsDiv.show(); // The results list appears
+            content = this.value; // We store this.value in a global variable for future checks
+            filteredCountries = getFilteredCountries(content); // Gets new array by calling a function with 'content' as argument
 
-            console.log(filteredCountries); // The result array of the function called
-            showResults(filteredCountries); // Sends result array as argument
-        }) // This gets a filtered array and uses it as an argument
+            showResults(filteredCountries); // Calls function with new array as argument
+        }) // This runs each time a character is added
         .on("blur", function () {
             $resultsDiv.hide();
-        })
+        }) // If focus lost, hide list
         .on("focus", function () {
             $resultsDiv.show();
-        })
+        }) // If focus recovered, show list again
         .on("keydown", function (e) {
             $resultsList = $("#results div");
             length = $resultsList.length;
@@ -50,47 +49,59 @@
                     break;
             }
             highlight(highlightIndex);
-        });
+        }); // This allows navigation through the list with arrow keys and selection with 'enter'
 
     // Function to get a filtered array
-
-    function getFilteredCountries(value) {
-        if (value === "") {
-            return []; // Return empty array if field empty
+    function getFilteredCountries(content) {
+        if (content === "") {
+            return []; // Return empty array if input content empty
         }
 
-        return countries // The 'countries' array
+        return countries // The 'countries' array used as an argument on the IIFE
             .filter(function (country) {
-                return country.toLowerCase().indexOf(value.toLowerCase()) === 0; // IndexOf returns index of matching string fragment
-            }) // Returns an array with elements that pass the function
-            .slice(0, 4); // Cuts the array to first 4 items (index 4 excluded)
+                return (
+                    country.toLowerCase().indexOf(content.toLowerCase()) === 0
+                ); // If characters written match with first letters of country name, pass the check
+            }) // Returns a new array with elements that pass the check
+            .slice(0, 4); // Cuts the array to first 4 items
     }
 
     // Function to show div with results
-
-    function showResults(results) {
-        var resultHtml = "";
-        if (results.length === 0 && value) {
-            resultHtml = `<div id="noResults"><em>No results</em></div>`; // Adds 'No results' if filtered array is empty
+    function showResults(filteredCountries) {
+        var resultHtml = ""; // A variable that stores the HTML code to write inside the results div
+        if (filteredCountries.length === 0 && content) {
+            resultHtml = `<em class="noResults">No results</em>`; // Adds 'No results' if filtered array is empty
         } else {
-            results.forEach(function (country) {
-                resultHtml += `<div class="result">${country}</div>`; // Inserts code fragment to resultHtml
+            filteredCountries.forEach(function (country) {
+                resultHtml += `<div class="result">${country}</div>`; // Inserts code fragment to resultHtml,
             });
         }
         $resultsDiv.html(resultHtml); // Inserts html code to results div
+
+        $resultsList = $("#results div"); // Makes a jQuery element of the results
+
+        $resultsList.each(function (i) {
+            // The jQuery variant of the .forEach() loop
+            $resultsList.eq(i).on("mouseover", function () {
+                $resultsList.removeClass("highlight");
+                $resultsList.eq(i).addClass("highlight");
+                highlightIndex = i;
+            });
+            $resultsList.eq(i).on("mouseleave", function () {
+                $resultsList.eq(i).removeClass("highlight");
+            });
+            $resultsList.eq(i).on("mousedown", function () {
+                $input.val($resultsList.eq(i).text());
+            });
+        }); // Adds event listeners to all result divs
     }
 
-    function highlight(index) {
-        $resultsList.eq((length + index - 1) % length).removeClass("highlight");
-        $resultsList.eq((length + index + 1) % length).removeClass("highlight");
-        $resultsList.eq((length + index) % length).addClass("highlight");
+    function highlight(highlightIndex) {
+        $resultsList.removeClass("highlight"); // Cleans all other highlights
+        $resultsList // Highlights selected element
+            .eq((length + highlightIndex) % length)
+            .addClass("highlight");
     }
-
-    //
-    //
-    //
-    //
-    //
 })([
     "Afghanistan",
     "Albania",

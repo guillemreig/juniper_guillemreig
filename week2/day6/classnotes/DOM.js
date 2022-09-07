@@ -44,6 +44,7 @@ firstLi.style.fontSize = "20px";
 // Returns an array-like object containing all of the elements that match the specified selector
 
 var colors = document.querySelectorAll("#colors>li"); // Array-like (li elements inside parent with class colors)
+// NodeList : Accepts forEach() loops
 console.log("colors :", colors);
 
 colors.forEach(function () {

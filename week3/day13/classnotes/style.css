@@ -10,12 +10,13 @@
 }
 
 #results div {
-    height: 25px;
+    height: auto;
     padding: 2px 5px;
+    overflow: hidden;
 }
 
 #noResults {
-    color: grey;
+    background-color: grey;
 }
 
 .highlight {
