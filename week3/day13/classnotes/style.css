@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+#results {
+    background-color: whitesmoke;
+    border: 1px solid black;
+    margin: -1px 57px;
+    width: 146px;
+}
+
+#results div {
+    height: 25px;
+    padding: 2px 5px;
+}
+
+#noResults {
+    color: grey;
+}
+
+.highlight {
+    background-color: lightblue;
+}
