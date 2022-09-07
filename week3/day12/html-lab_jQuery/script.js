@@ -34,7 +34,8 @@ setTimeout(function () {
     overlay.classList.add("overlayOn");
 
     $("body").append(
-        '<div id="popUp">\
+        '<div id="popUpDiv">\
+            <div id="popUp">\
                 <h3 class="popUpText">Welcome to our redesigned site!</h3>\
                 <p class="popUpText">\
                     Would like to take a <a href="">tour</a> of our new features?\
@@ -45,10 +46,14 @@ setTimeout(function () {
                     with that.\
                 </p>\
                 <h3 id="popUpX">X</h3>\
-            </div>'
+            </div>\
+        </div>'
     );
 
-    var $popUp = $("#popUp"); // The popUp div
+    var $popUpDiv = $("#popUpDiv"); // The popUpDiv
+    console.log("$popUpDiv :", $popUpDiv);
+
+    var $popUp = $("#popUp"); // The popUp rectangle
     console.log("$popUp :", $popUp);
 
     var $popUpText = $(".popUpText");
@@ -57,14 +62,19 @@ setTimeout(function () {
     var $popUpX = $("#popUpX");
     console.log("$popUpX :", $popUpX);
 
-    $popUp.css({
-        backgroundColor: "white",
+    $popUpDiv.css({
         position: "absolute",
-        width: "440px",
-        minWidth: "440px",
+        width: "100%",
         height: "175px",
         top: "185px",
-        margin: "0 25vw",
+        display: "flex",
+        justifyContent: "center",
+    });
+
+    $popUp.css({
+        backgroundColor: "white",
+        width: "440px",
+        minWidth: "440px",
         borderRadius: "10px",
         paddingTop: "10px",
     });
