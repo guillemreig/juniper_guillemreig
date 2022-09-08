@@ -1,0 +1,8 @@
+{
+    "string": "Maria",
+    "number": 23,
+    "boolean": false,
+    "null": null,
+    "array": [4, 5, 6],
+    "object": { "name": "MacBook" }
+}

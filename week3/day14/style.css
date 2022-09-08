@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Exercise 1 */
+
+body {
+    background-color: skyblue;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#textDiv {
+    position: relative;
+    margin: 30px auto;
+    width: fit-content;
+}
+
+#btnDiv {
+    position: relative;
+    margin: 10px auto;
+    width: fit-content;
+    /*display: flex;
+    justify-content: center;*/
+}
+
+#btn {
+    width: 100px;
+    height: 40px;
+    font-size: larger;
+}
+
+/* Exercise 2 */
+
+h2 {
+    text-align: center;
+    font-size: 500px;
+    color: white;
+}
+
+h3 {
+    text-align: center;
+    font-size: 100px;
+    color: white;
+}

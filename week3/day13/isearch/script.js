@@ -5,6 +5,9 @@
     var $resultsDiv = $("#results"); // The 'results' div
     $resultsDiv.hide(); // Starts hidden
 
+    var $searchBtn = $("#searchBtn");
+    console.log($searchBtn);
+
     // Global variables
     var filteredCountries; // A 4 length array of matching countries
     var $resultsList; // a jQuery object that contains the divs with the filtered country names
@@ -45,11 +48,26 @@
                     $input.val(
                         filteredCountries[(length + highlightIndex) % length]
                     );
+                    content = this.value;
+                    filteredCountries = getFilteredCountries(content);
+                    showResults(filteredCountries);
                     $resultsDiv.hide();
                     break;
             }
             highlight(highlightIndex);
         }); // This allows navigation through the list with arrow keys and selection with 'enter'
+
+    // Event listener on button
+
+    $searchBtn.on("click", function () {
+        console.log(
+            "$input.text() :",
+            document.querySelector("input[name=country]").value
+        );
+        console.log("filteredCountries[0] :", filteredCountries[0]);
+
+        alert("You must select a valid country name");
+    });
 
     // Function to get a filtered array
     function getFilteredCountries(content) {
@@ -92,7 +110,10 @@
             });
             $resultsList.eq(i).on("mousedown", function () {
                 $input.val($resultsList.eq(i).text());
-            });
+                //content = $input.text();
+                //filteredCountries = getFilteredCountries(content);
+                //showResults(filteredCountries);
+            }); // Bandaid
         }); // Adds event listeners to all result divs
     }
 
