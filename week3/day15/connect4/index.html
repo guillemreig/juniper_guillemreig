@@ -8,9 +8,25 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div id="textDiv">
-            <h1 id="text"></h1>
-            Welcome to connect 4!
+        <div id="startDiv" class="btnDiv">
+            <h1>Connect 4</h1>
+            <button id="startBtn">Start</button>
+        </div>
+        <div id="gameDiv" class="btnDiv">
+            <h1>Choose game type</h1>
+            <button id="vsBtn">1 vs 1</button>
+            <button id="aiBtn">1 vs AI</button>
+        </div>
+        <div id="readyDiv" class="btnDiv">
+            <h1>Ready?</h1>
+            <button id="readyBtn">Go!</button>
+        </div>
+        <div id="infoDiv" class="btnDiv">
+            <h1 id="infoTxt">Player turn</h1>
+        </div>
+        <div id="winDiv" class="btnDiv">
+            <h1 id="winTxt">Player wins!</h1>
+            <button id="rematchBtn">Rematch!</button>
         </div>
         <div id="selectDiv">
             <div id="selectCoin" class="coin"></div>
@@ -149,7 +165,6 @@
                 </div>
             </div>
         </div>
-
         <script
             src="https://code.jquery.com/jquery-3.6.1.js"
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="

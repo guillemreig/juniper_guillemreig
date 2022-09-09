@@ -1,10 +1,84 @@
+// Buttons
+
+var startBtn = document.getElementById("startBtn");
+console.log("startBtn :", startBtn);
+
+var vsBtn = document.getElementById("vsBtn");
+console.log("vsBtn :", vsBtn);
+
+var readyBtn = document.getElementById("readyBtn");
+console.log("readyBtn :", readyBtn);
+
+var rematchBtn = document.getElementById("rematchBtn");
+console.log("rematchBtn :", rematchBtn);
+
+// Selection coin
+
 var selectCoin = document.getElementById("selectCoin");
 console.log("selectCoin :", selectCoin);
+
+// Variables
 
 var icol = 3; // Keeps track of current column / last coin column
 
 var player = "Yellow";
 selectCoin.classList.add("Yellow");
+
+// Event listeners
+
+startBtn.addEventListener("click", function (e) {
+    $("#startDiv").css({
+        height: "0px",
+        visibility: "hidden",
+    });
+    $("#gameDiv").css({
+        height: "100px",
+        visibility: "visible",
+    });
+    return;
+});
+
+vsBtn.addEventListener("click", function (e) {
+    $("#gameDiv").css({
+        height: "0px",
+        visibility: "hidden",
+    });
+    $("#readyDiv").css({
+        height: "100px",
+        visibility: "visible",
+    });
+    return;
+});
+
+readyBtn.addEventListener("click", function (e) {
+    $("#readyDiv").css({
+        height: "0px",
+        visibility: "hidden",
+    });
+    $("#infoDiv").css({
+        height: "100px",
+        visibility: "visible",
+    });
+    newGame(player);
+    return;
+});
+
+rematchBtn.addEventListener("click", function (e) {
+    console.log("Checkpoint 5. Restart");
+    $("#winDiv").css({
+        height: "0px",
+        visibility: "hidden",
+    });
+    $("#infoDiv").css({
+        height: "100px",
+        visibility: "visible",
+    });
+
+    $(".slot").removeClass("Yellow Red");
+
+    switchPlayer();
+    newGame(player);
+});
 
 function switchPlayer() {
     switch (player) {
@@ -20,56 +94,14 @@ function switchPlayer() {
             break;
     }
 }
-/*
-$(".colDiv").on("click", function (e) {
-    var col = $(e.currentTarget);
-    var slotsInCol = col.children();
-    consolelog();
 
-    for (var i = slotsInCol.length - 1; i >= 0; i--) {
-        console.log(slotsInCol[i]);
-
-        if (
-            !slotsInCol.eq(i).hasClass("Yellow") &&
-            !slotsInCol.eq(i).hasClass("Red")
-        ) {
-            slotsInCol.eq(i).addClass(player);
-            break;
-        }
-    }
-
-    if (i == -1) {
-        console.log("Column is full!");
-        return;
-    }
-
-    var slotsInRow = 
-
-    if (checkForVictory(slotsInCol)) {
-        // This checks for the vertical
-    } else {
-    }
-
-    switchPlayer();
-    console.log("Next player is:", player);
-});
-
-function checkForVictory(slots) {
-    var count = 0;
-    for (var i = 0; i < slots.length; i++) {
-        if (slots.eq(i).hasClass(player)) {
-            count++;
-
-            if (count === 4) {
-                return true;
-            }
-        } else {
-            count = 0;
-        }
-    }
+function newGame(player) {
+    selectCoin.style.visibility = "visible";
+    document.addEventListener("keydown", keyFunc);
+    return;
 }
-*/
-document.addEventListener("keydown", function (e) {
+
+function keyFunc(e) {
     if (e.key === "ArrowLeft") {
         // Left arrow
         icol--;
@@ -85,16 +117,16 @@ document.addEventListener("keydown", function (e) {
         }
         selectCoin.style.gridArea = "1 / " + (icol + 1);
     } else if (e.keyCode === 32 || e.key === "Enter") {
-        // Space
-        console.log("Select!");
+        // Space or Enter
+        console.log("Checkpoint 1. icol :", icol);
         dropCoin(icol);
     }
-});
+    return;
+}
 
 function dropCoin(icol) {
-    var $col = $(".col" + icol);
-    console.log("$col :", $col);
-    var irow; // Keeps track of last coin row
+    var $col = $(".col" + icol); // Makes a jQuery list of the slots in the current column
+    var irow; // Keeps track of current row / last coin row
 
     for (irow = 0; irow < $col.length; irow++) {
         if (
@@ -102,24 +134,44 @@ function dropCoin(icol) {
             !$col.eq(irow).hasClass("Red")
         ) {
             $col.eq(irow).addClass(player);
-            console.log("icol :", icol);
-            console.log("icol :", irow);
-            checkForWin(icol, irow); // After coin set, check for win
-            switchPlayer();
+            console.log("Checkpoint 2. irow :", irow);
+
+            if (checkForWin(icol, irow)) {
+                // After coin successfully set, check for win
+                victoryDance(player);
+            } else {
+                switchPlayer();
+            }
             return;
         }
     }
     alert("Column is full! Please choose another one.");
+    return;
 }
 
 function checkForWin(icol, irow) {
+    console.log("Checkpoint 3. jQ lists");
+
     var $colArr = $(".col" + icol);
     console.log("$colArr :", $colArr);
-    checkLine($colArr); // Checks win in column
+
+    // Try to get slot classes
+    console.log("TEST $colArr.eq(icol) :", $colArr.eq(icol));
 
     var $rowArr = $(".row" + irow);
     console.log("$rowArr :", $rowArr);
-    checkLine($rowArr); // Checks win in row
+
+    if (checkLine($colArr)) {
+        // Checks win in column
+        console.log("col win");
+        return true;
+    } else if (checkLine($rowArr)) {
+        // Checks win in row
+        console.log("row win");
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function checkLine(arr) {
@@ -128,14 +180,27 @@ function checkLine(arr) {
         if (arr.eq(i).hasClass(player)) {
             count++;
             if (count == 4) {
-                victoryDance(player);
+                return true;
             }
         } else {
             count = 0;
         }
     }
+    return false;
 }
 
 function victoryDance(player) {
-    console.log(player + " wins!!");
+    console.log("Checkpoint 4. Win");
+
+    $("#infoDiv").css({
+        height: "0px",
+        visibility: "hidden",
+    });
+    $("#winDiv").css({
+        height: "100px",
+        visibility: "visible",
+    });
+    document.removeEventListener("keydown", keyFunc);
+    selectCoin.style.visibility = "hidden";
+    return;
 }

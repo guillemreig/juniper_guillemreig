@@ -1,12 +1,37 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: monospace;
 }
 
-#textDiv {
-    height: 50px;
+.btnDiv {
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
+}
+
+#startDiv {
+    height: 100px;
+    visibility: visible;
+}
+
+#gameDiv {
+    visibility: hidden;
+    height: 0;
+}
+
+#readyDiv {
+    visibility: hidden;
+    height: 0;
+}
+
+#infoDiv {
+    visibility: hidden;
+    height: 0;
+}
+
+#winDiv {
+    visibility: hidden;
+    height: 0;
 }
 
 #selectDiv {
@@ -87,4 +112,5 @@
 
 #selectCoin {
     grid-area: 1 / 4;
+    visibility: hidden;
 }
