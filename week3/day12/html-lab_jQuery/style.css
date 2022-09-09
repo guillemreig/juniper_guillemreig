@@ -253,7 +253,8 @@ a {
         background-color: rgb(34, 34, 34);
     }
 
-    a {
+    .links a,
+    .logOut a {
         color: white;
     }
 

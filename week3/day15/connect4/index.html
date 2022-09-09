@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Connect 4</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="textDiv">
+            <h1 id="text"></h1>
+            Welcome to connect 4!
+        </div>
+        <div id="selectDiv">
+            <div id="selectCoin" class="coin"></div>
+        </div>
+        <div id="board">
+            <div id="col0" class="colDiv">
+                <div class="slot col0 row0 dia3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row1 dia4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row2 dia5">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row3 dib0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row4 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row5 dib2">
+                    <div class="hole"></div>
+                </div>
+            </div>
+            <div id="col1" class="colDiv">
+                <div class="slot col1 row0 dia2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col1 row1 dia3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col1 row2 dia4 dib0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col1 row3 dia5 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col1 row4 dib2"><div class="hole"></div></div>
+                <div class="slot col1 row5 dib3"><div class="hole"></div></div>
+            </div>
+            <div id="col2" class="colDiv">
+                <div class="slot col2 row0 dia1"><div class="hole"></div></div>
+                <div class="slot col2 row1 dia2 dib0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col2 row2 dia3 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col2 row3 dia4 dib2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col2 row4 dia5 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col2 row5 dib4"><div class="hole"></div></div>
+            </div>
+            <div id="col3" class="colDiv">
+                <div class="slot col3 row0 dia0 dib0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row1 dia1 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row2 dia2 dib2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row3 dia3 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row4 dia4 dib4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row5 dia5 dib5">
+                    <div class="hole"></div>
+                </div>
+            </div>
+            <div id="col4" class="colDiv">
+                <div class="slot col4 row0 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row1 dia0 dib2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row2 dia1 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row3 dia2 dib4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row4 dia3 dib5">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row5 dia4">
+                    <div class="hole"></div>
+                </div>
+            </div>
+            <div id="col5" class="colDiv">
+                <div class="slot col5 row0 dib2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row1 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row2 dia0 dib4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row3 dia1 dib5">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row4 dia2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row5 dia3">
+                    <div class="hole"></div>
+                </div>
+            </div>
+            <div id="col6" class="colDiv">
+                <div class="slot col6 row0 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row1 dib4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row2 dib5">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row3 dia0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row4 dia1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row5 dia2">
+                    <div class="hole"></div>
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://code.jquery.com/jquery-3.6.1.js"
+            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+            crossorigin="anonymous"
+        ></script>
+        <script src="script.js"></script>
+    </body>
+</html>

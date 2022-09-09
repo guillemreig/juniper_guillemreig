@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#textDiv {
+    height: 50px;
+    text-align: center;
+    font-size: 40px;
+}
+
+#selectDiv {
+    width: 700px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+    display: grid;
+    grid-template: 1fr / repeat(7, 1fr);
+}
+
+#board {
+    width: 700px;
+    height: 600px;
+    position: relative;
+    margin: 0 auto;
+    display: grid;
+    grid-template: 1fr / repeat(7, 1fr);
+}
+
+.colDiv {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#col0 {
+    grid-area: 1 / 1;
+}
+#col1 {
+    grid-area: 1 / 2;
+}
+#col2 {
+    grid-area: 1 / 3;
+}
+#col3 {
+    grid-area: 1 / 4;
+}
+#col4 {
+    grid-area: 1 / 5;
+}
+#col5 {
+    grid-area: 1 / 6;
+}
+#col6 {
+    grid-area: 1 / 7;
+}
+
+.slot {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.hole {
+    border: 50px solid navy;
+    position: relative;
+    height: 80px;
+    width: 80px;
+    top: -40px;
+    left: -40px;
+    border-radius: 50%;
+}
+
+.coin {
+    width: 90px;
+    height: 90px;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.Yellow {
+    background-color: yellow;
+}
+
+.Red {
+    background-color: red;
+}
+
+#selectCoin {
+    grid-area: 1 / 4;
+}

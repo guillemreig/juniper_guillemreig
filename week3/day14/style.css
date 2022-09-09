@@ -8,6 +8,7 @@
 
 body {
     background-color: skyblue;
+    transition: all 3000ms linear; /*This smoothes the ransition */
 }
 
 h1 {

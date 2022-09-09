@@ -1,15 +1,4 @@
-// Each part must be commented in before running
-/*
-// Part 1
-var cube = document.getElementById("cube");
-
-document.addEventListener("mousemove", function (e) {
-    cube.style.left = e.pageX - 50 + "px";
-    cube.style.top = e.pageY - 50 + "px";
-});
-*/
 // Part 2
-/*
 var textArea = document.getElementById("textArea");
 
 var address =
@@ -34,49 +23,3 @@ document.addEventListener("keydown", function (e) {
         textArea.value += address[textArea.value.length]; // And instead adds a character from the 'address' text. We use the current text lenghth as index value.
     } // This 'if' checks if the 'backspace' key was pushed. If it was, it lets the 'backspace' work normally
 });
-*/
-// Part 3
-/*
-var colorBox = document.getElementById("colorBox");
-
-colorBox.addEventListener("mousedown", function (e) {
-    var randomColor =
-        "rgb(" +
-        Math.floor(Math.random() * 256) +
-        ", " +
-        Math.floor(Math.random() * 256) +
-        ", " +
-        Math.floor(Math.random() * 256) +
-        ")";
-    e.target.style.backgroundColor = randomColor;
-});
-
-colorBox.addEventListener("mouseup", function (e) {
-    var randomColor =
-        "rgb(" +
-        Math.floor(Math.random() * 256) +
-        ", " +
-        Math.floor(Math.random() * 256) +
-        ", " +
-        Math.floor(Math.random() * 256) +
-        ")";
-    e.target.style.backgroundColor = randomColor;
-});
-*/
-// Part 4
-/*
-var outerBox = document.getElementById("outerBox");
-var innerBox = document.getElementById("innerBox");
-
-outerBox.addEventListener("click", function (e) {
-    var randomColor =
-        "rgb(" +
-        Math.floor(Math.random() * 256) +
-        ", " +
-        Math.floor(Math.random() * 256) +
-        ", " +
-        Math.floor(Math.random() * 256) +
-        ")";
-    e.target.style.backgroundColor = randomColor;
-});
-*/

@@ -19,13 +19,10 @@
 
     var num;
 
-    function askForNumber() {
-        var num = prompt("Please enter a number between 1 and 10");
-        if (num >= 1 && num <= 10 && num == parseInt(num)) {
-            return num;
-        }
-        throw "Bad number"; //new Error
-    }
+    while (num == undefined) {
+        german.innerHTML = translateNumberToGerman();
+        number.innerHTML = num;
+    } // I wish it updated the html so the 'undefined' would be shown
 
     function translateNumberToGerman() {
         try {
@@ -37,8 +34,11 @@
         }
     }
 
-    while (num == undefined) {
-        german.innerHTML = translateNumberToGerman();
-        number.innerHTML = num;
-    } // I wish it updated the html so the 'undefined' would be shown
+    function askForNumber() {
+        var num = prompt("Please enter a number between 1 and 10");
+        if (num >= 1 && num <= 10 && num == parseInt(num)) {
+            return num;
+        }
+        throw "Bad number"; //new Error
+    }
 })();
