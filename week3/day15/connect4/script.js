@@ -156,29 +156,42 @@ function checkForWin(icol, irow) {
     console.log("$colArr :", $colArr);
 
     // Try to get slot classes
-    console.log("TEST $colArr.eq(icol) :", $colArr.eq(icol));
+    console.log("TEST $colArr.eq(irow) :", $colArr.eq(irow));
+    var $slot = $colArr.eq(irow); // Gets the individual slot that was filled
 
-    var $rowArr = $(".row" + irow);
-    console.log("$rowArr :", $rowArr);
+    console.log($slot.attr("class"));
+    var classStr = $slot.attr("class"); // Gets a string of the slot classes
 
-    if (checkLine($colArr)) {
+    console.log(classStr.split(" "));
+    var classArr = classStr.split(" "); // Transforms the string into an array
+
+    classArr.pop();
+    classArr.shift(); // Removes redundant 'slot' and 'player' classes
+    console.log(classArr);
+
+    if (checkLine(classArr[0])) {
         // Checks win in column
-        console.log("col win");
+        console.log("column win");
         return true;
-    } else if (checkLine($rowArr)) {
+    } else if (checkLine(classArr[1])) {
         // Checks win in row
         console.log("row win");
         return true;
-    } else {
-        return false;
-    }
+    } else if (checkLine(classArr[2]) || checkLine(classArr[3])) {
+        // Checks win in diagonals
+        console.log("diagonal win");
+        return true;
+    } else false;
 }
 
-function checkLine(arr) {
+function checkLine(line) {
+    $arr = $("." + line);
+    console.log("$arr :", $arr);
     var count = 0;
-    for (var i = 0; i < arr.length; i++) {
-        if (arr.eq(i).hasClass(player)) {
+    for (var i = 0; i < $arr.length; i++) {
+        if ($arr.eq(i).hasClass(player)) {
             count++;
+            console.log("has player class");
             if (count == 4) {
                 return true;
             }
