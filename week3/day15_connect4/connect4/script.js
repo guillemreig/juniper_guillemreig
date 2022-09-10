@@ -1,21 +1,14 @@
 // Buttons
 
-var startBtn = document.getElementById("startBtn");
-console.log("startBtn :", startBtn);
-
-var vsBtn = document.getElementById("vsBtn");
-console.log("vsBtn :", vsBtn);
-
-var readyBtn = document.getElementById("readyBtn");
-console.log("readyBtn :", readyBtn);
-
-var rematchBtn = document.getElementById("rematchBtn");
-console.log("rematchBtn :", rematchBtn);
+var startBtn = document.getElementById("startBtn"); // Quick start button
+var selectBtn = document.getElementById("selectBtn"); // New Game button
+var vsBtn = document.getElementById("vsBtn"); // 1 vs 1 button
+var readyBtn = document.getElementById("readyBtn"); // Go! button
+var rematchBtn = document.getElementById("rematchBtn"); // Rematch! button
 
 // Selection coin
 
-var selectCoin = document.getElementById("selectCoin");
-console.log("selectCoin :", selectCoin);
+var selectCoin = document.getElementById("selectCoin"); // The flashing coin used in column selection
 
 // Variables
 /*
@@ -23,15 +16,80 @@ var columns = 7; // For calculations and future procedural boards
 var rows = 6;
 var winLine = 4;
 */
-var icol = 3; // Keeps track of current column / last coin column
-var win = false;
+var icol = 3; // Keeps track of current selected column
 
-var player = "Yellow";
-selectCoin.classList.add("Yellow");
+var player = "Yellow"; // Keeps track of current player. Starting player "Yellow"
+selectCoin.classList.add("Yellow"); // The selecting coin starts being yellow
+
+var idiv; // The index of the menu division currently displayed
+var ibtn = 1; // The index of the button currently selected
+
+/*
+// The future game intro sequence screen
+timer = setTimeout(function intro(){}, 1000)
+clearTimeout(timer);
+*/
+
+(function intro() {
+    $("#startDiv").css({
+        height: "100px",
+        visibility: "visible",
+    });
+    idiv = 0; // Currently at menu index 0
+})();
 
 // Event listeners
+document.addEventListener("keydown", function menu(e) {
+    var $btnDiv = $(".btnDiv"); // All menu screens
+    var $currMenu = $btnDiv.eq(idiv).children(); // Current menu screen
+    var menuLength = $currMenu.length; // Current menu length
+
+    var $currBtn; // The current button 'p' element
+
+    if (e.key === "ArrowDown") {
+        ibtn--;
+        if (ibtn < 1) {
+            ibtn = menuLength - 1;
+        }
+        $("button").removeClass("btnSelect");
+        $currBtn = $currMenu.eq(ibtn);
+        $currBtn.children().addClass("btnSelect");
+    } else if (e.key === "ArrowUp") {
+        ibtn++;
+        if (ibtn > menuLength - 1) {
+            ibtn = 1;
+        }
+        $("button").removeClass("btnSelect");
+        $currBtn = $currMenu.eq(ibtn);
+        $currBtn.children().addClass("btnSelect");
+    } else if (e.keyCode === 32 || e.key === "Enter") {
+        if (idiv === 0 && ibtn === 1) {
+        }
+
+        // Space or Enter
+    }
+    console.log("idiv :", idiv);
+    console.log("ibtn :", ibtn);
+});
 
 startBtn.addEventListener("click", function (e) {
+    console.log("Checkpoint 0. Start");
+    $("#startDiv").css({
+        height: "0px",
+        visibility: "hidden",
+    });
+    $("#infoDiv").css({
+        height: "100px",
+        visibility: "visible",
+    });
+
+    $(".slot").removeClass("Yellow Red flagged");
+
+    win = false;
+    newGame(player);
+});
+
+selectBtn.addEventListener("click", function (e) {
     $("#startDiv").css({
         height: "0px",
         visibility: "hidden",
@@ -78,6 +136,9 @@ rematchBtn.addEventListener("click", function (e) {
         height: "100px",
         visibility: "visible",
     });
+    $("#selectDiv").css({
+        visibility: "visible",
+    });
 
     $(".slot").removeClass("Yellow Red flagged");
 
@@ -101,11 +162,18 @@ function switchPlayer() {
             selectCoin.classList.add("Yellow");
             break;
     }
+    $("#infoTxt").html(player + "'s turn");
 }
 
 function newGame(player) {
     selectCoin.style.visibility = "visible";
     document.addEventListener("keydown", keyFunc);
+    $("#selectDiv").css({
+        visibility: "visible",
+    });
+    $("#board").css({
+        visibility: "visible",
+    });
     return;
 }
 
@@ -148,14 +216,13 @@ function dropCoin(icol) {
             return;
         }
     }
-    alert("Column is full! Please choose another one.");
+    $("#infoTxt").html("Column is full!");
     document.addEventListener("keydown", keyFunc); // Enables keydown
     return;
 }
 
 function moveCoin(icol, irow) {
     console.log("Checkpoint 3: moveCoin");
-    console.log('$(".col" + icol).length', $(".col" + icol).length);
 
     var $col = $(".col" + icol);
     var h = $col.length - irow; // The height of the drop
@@ -185,16 +252,13 @@ function moveCoin(icol, irow) {
 }
 
 function checkForWin(icol, irow) {
-    console.log("Checkpoint 3. jQ lists");
-
+    console.log("Checkpoint 5: checkForWin");
+    var win = false;
     var $colArr = $(".col" + icol);
-    // console.log("$colArr :", $colArr);
 
-    // Try to get slot classes
+    // Get slot classes (directions) and make an array of each direction
     var $slot = $colArr.eq(irow); // Gets the individual slot that was filled
-
     var classStr = $slot.attr("class"); // Gets a string of the slot classes
-
     var classArr = classStr.split(" "); // Transforms the string into an array
 
     classArr.pop();
@@ -204,32 +268,32 @@ function checkForWin(icol, irow) {
     checkLine(classArr[1]);
     checkLine(classArr[2]);
     checkLine(classArr[3]);
-    console.log("win :", win);
+
+    function checkLine(line) {
+        $arr = $("." + line); // This converts each class string into a class selector
+        var count = 0;
+        for (var i = 0; i < $arr.length; i++) {
+            if ($arr.eq(i).hasClass(player)) {
+                $arr.eq(i).addClass("x");
+                count++;
+                if (count >= 4) {
+                    win = true;
+                    $(".x").addClass("flagged");
+                }
+            } else {
+                count = 0;
+                $arr.removeClass("x");
+            }
+        }
+        $arr.removeClass("x");
+        return;
+    }
+
     return win;
 }
 
-function checkLine(line) {
-    $arr = $("." + line); // This converts each class string into a class selector
-    var count = 0;
-    for (var i = 0; i < $arr.length; i++) {
-        if ($arr.eq(i).hasClass(player)) {
-            $arr.eq(i).addClass("x");
-            count++;
-            if (count >= 4) {
-                win = true;
-                $(".x").addClass("flagged");
-            }
-        } else {
-            count = 0;
-            $arr.removeClass("x");
-        }
-    }
-    $arr.removeClass("x");
-    return;
-}
-
 function victoryDance(player) {
-    // console.log("Checkpoint 4. Win");
+    console.log("Checkpoint 6: victoryDance");
 
     $("#infoDiv").css({
         height: "0px",
@@ -239,7 +303,12 @@ function victoryDance(player) {
         height: "100px",
         visibility: "visible",
     });
+    $("#winTxt").html("<span id=" + player + ">" + player + "</span> wins!");
+
     document.removeEventListener("keydown", keyFunc);
+    $("#selectDiv").css({
+        visibility: "hidden",
+    });
     selectCoin.style.visibility = "hidden";
     return;
 }

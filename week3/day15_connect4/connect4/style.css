@@ -10,6 +10,21 @@ body {
 
 h1 {
     color: white;
+    line-height: 100px;
+}
+
+button {
+    color: grey;
+    cursor: pointer;
+    font-size: 25px;
+    border: 0 solid rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    margin: 5px;
+}
+
+.btnSelect {
+    color: white;
+    animation: 1s infinite button;
 }
 
 .btnDiv {
@@ -18,8 +33,8 @@ h1 {
 }
 
 #startDiv {
-    height: 100px;
-    visibility: visible;
+    visibility: hidden;
+    height: 0;
 }
 
 #gameDiv {
@@ -49,6 +64,7 @@ h1 {
     margin: 0 auto;
     display: grid;
     grid-template: 1fr / repeat(7, 1fr);
+    visibility: hidden;
 }
 
 #board {
@@ -58,6 +74,7 @@ h1 {
     margin: 0 auto;
     display: grid;
     grid-template: 1fr / repeat(7, 1fr);
+    visibility: hidden;
 }
 
 .colDiv {
@@ -114,8 +131,15 @@ h1 {
     background-color: yellow;
 }
 
+#Yellow {
+    color: yellow;
+}
+
 .Red {
     background-color: red;
+}
+#Red {
+    color: red;
 }
 
 .flagged {
@@ -137,5 +161,11 @@ h1 {
 @keyframes shining {
     50% {
         background-color: white;
+    }
+}
+
+@keyframes button {
+    50% {
+        text-decoration: underline;
     }
 }
