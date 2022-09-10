@@ -124,8 +124,7 @@ function keyFunc(e) {
         selectCoin.style.gridArea = "1 / " + (icol + 1);
     } else if (e.keyCode === 32 || e.key === "Enter") {
         // Space or Enter
-        console.log("Checkpoint 1: keyFunc");
-        document.removeEventListener("keydown", keyFunc); // Disables keydown
+        console.log("Checkpoint 1. icol :", icol);
         dropCoin(icol);
     }
     return;
@@ -140,45 +139,42 @@ function dropCoin(icol) {
             !$col.eq(irow).hasClass("Yellow") &&
             !$col.eq(irow).hasClass("Red")
         ) {
-            console.log("Checkpoint 2: dropCoin");
-            moveCoin(icol, irow);
+            console.log("Checkpoint 2. irow :", irow);
 
+            $col.eq(irow).addClass(player);
+
+            if (checkForWin(icol, irow)) {
+                // After coin successfully set, check for win
+                victoryDance(player);
+            } else {
+                switchPlayer();
+            }
             return;
         }
     }
     alert("Column is full! Please choose another one.");
-    document.addEventListener("keydown", keyFunc); // Enables keydown
     return;
 }
 
-function moveCoin(icol, irow) {
-    console.log("Checkpoint 3: moveCoin");
+function moveCoin(icol) {
+    console.log("Checkpoint animation");
     console.log('$(".col" + icol).length', $(".col" + icol).length);
 
-    var $col = $(".col" + icol);
-    var h = $col.length - irow; // The height of the drop
+    document.removeEventListener("keydown", keyFunc);
 
-    selectCoin.style.animation = "none";
-    selectCoin.style.transition = "all " + h * 100 + "ms linear"; // Adapts fall time to height
-    selectCoin.style.transform = "translateY(" + h * 100 + "px)"; // The distance to move
+    var dropHeight = $(".col" + icol).length;
+    selectCoin.style.transition = "all " + 600 + "ms linear";
+    selectCoin.style.transform = "translateY(" + 600 + "px)";
 
     document.addEventListener("transitionend", function refresh(e) {
-        console.log("Checkpoint 4: transitionend");
-
+        console.log("e.taget :", e.target);
         document.removeEventListener("transitionend", refresh); // Only triggers once
 
-        $col.eq(irow).addClass(player);
-        selectCoin.style.animation = "1s infinite select";
+        document.addEventListener("keydown", keyFunc);
         selectCoin.style.transition = "";
         selectCoin.style.transform = "translateY(0px)";
 
-        if (checkForWin(icol, irow)) {
-            // After coin successfully set, check for win
-            victoryDance(player);
-        } else {
-            document.addEventListener("keydown", keyFunc);
-            switchPlayer();
-        }
+        dropCoin(icol);
     });
 }
 

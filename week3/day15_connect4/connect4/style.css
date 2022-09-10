@@ -4,6 +4,14 @@
     font-family: monospace;
 }
 
+body {
+    background-color: rgb(20, 20, 20);
+}
+
+h1 {
+    color: white;
+}
+
 .btnDiv {
     text-align: center;
     font-size: 30px;
@@ -110,7 +118,24 @@
     background-color: red;
 }
 
+.flagged {
+    animation: 1s infinite shining;
+}
+
 #selectCoin {
     grid-area: 1 / 4;
     visibility: hidden;
+    animation: 1s infinite select;
+}
+
+@keyframes select {
+    50% {
+        background-color: rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes shining {
+    50% {
+        background-color: white;
+    }
 }

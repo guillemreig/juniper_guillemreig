@@ -157,8 +157,6 @@ function moveCoin(icol, irow) {
 
     var $col = $(".col" + icol);
     var h = $col.length - irow; // The height of the drop
-
-    selectCoin.style.animation = "none";
     selectCoin.style.transition = "all " + h * 100 + "ms linear"; // Adapts fall time to height
     selectCoin.style.transform = "translateY(" + h * 100 + "px)"; // The distance to move
 
@@ -168,7 +166,6 @@ function moveCoin(icol, irow) {
         document.removeEventListener("transitionend", refresh); // Only triggers once
 
         $col.eq(irow).addClass(player);
-        selectCoin.style.animation = "1s infinite select";
         selectCoin.style.transition = "";
         selectCoin.style.transform = "translateY(0px)";
 
