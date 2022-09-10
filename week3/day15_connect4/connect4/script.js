@@ -24,6 +24,7 @@ var rows = 6;
 var winLine = 4;
 */
 var icol = 3; // Keeps track of current column / last coin column
+var win = false;
 
 var player = "Yellow";
 selectCoin.classList.add("Yellow");
@@ -78,9 +79,10 @@ rematchBtn.addEventListener("click", function (e) {
         visibility: "visible",
     });
 
-    $(".slot").removeClass("Yellow Red");
+    $(".slot").removeClass("Yellow Red flagged");
 
     switchPlayer();
+    win = false;
     newGame(player);
 });
 
@@ -189,32 +191,21 @@ function checkForWin(icol, irow) {
     // console.log("$colArr :", $colArr);
 
     // Try to get slot classes
-    // console.log("TEST $colArr.eq(irow) :", $colArr.eq(irow));
     var $slot = $colArr.eq(irow); // Gets the individual slot that was filled
 
-    // console.log($slot.attr("class"));
     var classStr = $slot.attr("class"); // Gets a string of the slot classes
 
-    // console.log(classStr.split(" "));
     var classArr = classStr.split(" "); // Transforms the string into an array
 
     classArr.pop();
     classArr.shift(); // Removes redundant 'slot' and 'player' classes
-    // console.log(classArr);
 
-    if (checkLine(classArr[0])) {
-        // Checks win in column
-        // console.log("column win");
-        return true;
-    } else if (checkLine(classArr[1])) {
-        // Checks win in row
-        // console.log("row win");
-        return true;
-    } else if (checkLine(classArr[2]) || checkLine(classArr[3])) {
-        // Checks win in diagonals
-        // console.log("diagonal win");
-        return true;
-    } else false;
+    checkLine(classArr[0]);
+    checkLine(classArr[1]);
+    checkLine(classArr[2]);
+    checkLine(classArr[3]);
+    console.log("win :", win);
+    return win;
 }
 
 function checkLine(line) {
@@ -222,15 +213,19 @@ function checkLine(line) {
     var count = 0;
     for (var i = 0; i < $arr.length; i++) {
         if ($arr.eq(i).hasClass(player)) {
+            $arr.eq(i).addClass("x");
             count++;
-            if (count == 4) {
-                return true;
+            if (count >= 4) {
+                win = true;
+                $(".x").addClass("flagged");
             }
         } else {
             count = 0;
+            $arr.removeClass("x");
         }
     }
-    return false;
+    $arr.removeClass("x");
+    return;
 }
 
 function victoryDance(player) {
