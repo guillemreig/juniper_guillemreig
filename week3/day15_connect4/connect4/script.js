@@ -18,7 +18,11 @@ var selectCoin = document.getElementById("selectCoin");
 console.log("selectCoin :", selectCoin);
 
 // Variables
-
+/*
+var columns = 7; // For calculations and future procedural boards
+var rows = 6;
+var winLine = 4;
+*/
 var icol = 3; // Keeps track of current column / last coin column
 
 var player = "Yellow";
@@ -80,6 +84,8 @@ rematchBtn.addEventListener("click", function (e) {
     newGame(player);
 });
 
+// Gameplay functions
+
 function switchPlayer() {
     switch (player) {
         case "Yellow":
@@ -125,16 +131,17 @@ function keyFunc(e) {
 }
 
 function dropCoin(icol) {
-    var $col = $(".col" + icol); // Makes a jQuery list of the slots in the current column
     var irow; // Keeps track of current row / last coin row
+    var $col = $(".col" + icol); // Makes a jQuery list of the slots in the current column
 
     for (irow = 0; irow < $col.length; irow++) {
         if (
             !$col.eq(irow).hasClass("Yellow") &&
             !$col.eq(irow).hasClass("Red")
         ) {
-            $col.eq(irow).addClass(player);
             console.log("Checkpoint 2. irow :", irow);
+
+            $col.eq(irow).addClass(player);
 
             if (checkForWin(icol, irow)) {
                 // After coin successfully set, check for win
@@ -149,49 +156,69 @@ function dropCoin(icol) {
     return;
 }
 
+function moveCoin(icol) {
+    console.log("Checkpoint animation");
+    console.log('$(".col" + icol).length', $(".col" + icol).length);
+
+    document.removeEventListener("keydown", keyFunc);
+
+    var dropHeight = $(".col" + icol).length;
+    selectCoin.style.transition = "all " + 600 + "ms linear";
+    selectCoin.style.transform = "translateY(" + 600 + "px)";
+
+    document.addEventListener("transitionend", function refresh(e) {
+        console.log("e.taget :", e.target);
+        document.removeEventListener("transitionend", refresh); // Only triggers once
+
+        document.addEventListener("keydown", keyFunc);
+        selectCoin.style.transition = "";
+        selectCoin.style.transform = "translateY(0px)";
+
+        dropCoin(icol);
+    });
+}
+
 function checkForWin(icol, irow) {
     console.log("Checkpoint 3. jQ lists");
 
     var $colArr = $(".col" + icol);
-    console.log("$colArr :", $colArr);
+    // console.log("$colArr :", $colArr);
 
     // Try to get slot classes
-    console.log("TEST $colArr.eq(irow) :", $colArr.eq(irow));
+    // console.log("TEST $colArr.eq(irow) :", $colArr.eq(irow));
     var $slot = $colArr.eq(irow); // Gets the individual slot that was filled
 
-    console.log($slot.attr("class"));
+    // console.log($slot.attr("class"));
     var classStr = $slot.attr("class"); // Gets a string of the slot classes
 
-    console.log(classStr.split(" "));
+    // console.log(classStr.split(" "));
     var classArr = classStr.split(" "); // Transforms the string into an array
 
     classArr.pop();
     classArr.shift(); // Removes redundant 'slot' and 'player' classes
-    console.log(classArr);
+    // console.log(classArr);
 
     if (checkLine(classArr[0])) {
         // Checks win in column
-        console.log("column win");
+        // console.log("column win");
         return true;
     } else if (checkLine(classArr[1])) {
         // Checks win in row
-        console.log("row win");
+        // console.log("row win");
         return true;
     } else if (checkLine(classArr[2]) || checkLine(classArr[3])) {
         // Checks win in diagonals
-        console.log("diagonal win");
+        // console.log("diagonal win");
         return true;
     } else false;
 }
 
 function checkLine(line) {
-    $arr = $("." + line);
-    console.log("$arr :", $arr);
+    $arr = $("." + line); // This converts each class string into a class selector
     var count = 0;
     for (var i = 0; i < $arr.length; i++) {
         if ($arr.eq(i).hasClass(player)) {
             count++;
-            console.log("has player class");
             if (count == 4) {
                 return true;
             }
@@ -203,7 +230,7 @@ function checkLine(line) {
 }
 
 function victoryDance(player) {
-    console.log("Checkpoint 4. Win");
+    // console.log("Checkpoint 4. Win");
 
     $("#infoDiv").css({
         height: "0px",
@@ -217,3 +244,14 @@ function victoryDance(player) {
     selectCoin.style.visibility = "hidden";
     return;
 }
+
+// Animations
+/*
+    if (left <= -links[0].offsetWidth) {
+        left = left + links[0].offsetWidth; //
+        headlines.appendChild(document.getElementsByTagName("a")[0]); // Remove the first link and make it the last
+    } // This will run when the first link is completely offscreen
+
+    headlines.style.left = left + "px"; // This moves the box
+    reqId = requestAnimationFrame(moveHeadlines); // 2. This keeps it going
+    */
