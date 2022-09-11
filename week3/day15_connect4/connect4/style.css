@@ -22,6 +22,18 @@ button {
     margin: 5px;
 }
 
+#logo {
+    font-size: 100px;
+}
+
+#four {
+    position: relative;
+    font-size: 200px;
+    animation: 20s infinite rainbow ease;
+    text-shadow: -5px -5px 0 white, 5px -5px 0 white, -5px 5px 0 white,
+        5px 5px 0 white;
+}
+
 .btnSelect {
     color: white;
     animation: 1s infinite button;
@@ -150,6 +162,7 @@ button {
     grid-area: 1 / 4;
     visibility: hidden;
     animation: 1s infinite select;
+    cursor: pointer;
 }
 
 @keyframes select {
@@ -167,5 +180,51 @@ button {
 @keyframes button {
     50% {
         text-decoration: underline;
+    }
+}
+
+@keyframes rainbow {
+    0% {
+        color: red;
+    }
+
+    10% {
+        color: orange;
+    }
+
+    20% {
+        color: yellow;
+    }
+
+    30% {
+        color: lawngreen;
+    }
+
+    40% {
+        color: green;
+    }
+
+    50% {
+        color: cyan;
+    }
+
+    60% {
+        color: blue;
+    }
+
+    70% {
+        color: indigo;
+    }
+
+    80% {
+        color: blueviolet;
+    }
+
+    90% {
+        color: fuchsia;
+    }
+
+    100% {
+        color: red;
     }
 }

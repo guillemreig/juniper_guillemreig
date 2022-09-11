@@ -5,6 +5,7 @@
 var startBtn = document.getElementById("startBtn"); // Quick start button
 var selectBtn = document.getElementById("selectBtn"); // New Game button
 var vsBtn = document.getElementById("vsBtn"); // 1 vs 1 button
+var aiBtn = document.getElementById("aiBtn"); // 1 vs AI button
 var readyBtn = document.getElementById("readyBtn"); // Go! button
 var rematchBtn = document.getElementById("rematchBtn"); // Rematch! button
 
@@ -12,9 +13,14 @@ var rematchBtn = document.getElementById("rematchBtn"); // Rematch! button
 
 var selectCoin = document.getElementById("selectCoin"); // The flashing coin used in column selection
 
+// Selection area
+
+var selectDiv = document.getElementById("selectDiv");
+console.log("selectDiv :", selectDiv);
+
 // Variables
 /*
-var columns = 7; // For calculations and future procedural boards
+var columns = 7; // For future procedural boards
 var rows = 6;
 var winLine = 4;
 */
@@ -39,17 +45,23 @@ clearTimeout(timer);
         visibility: "visible",
     });
     idiv = 0; // Currently at menu index 0
+    ibtn = 1;
+    menu(0);
 })();
 
-// Event listeners
-document.addEventListener("keydown", function menu(e) {
-    // Menu navigation through keyboard
+// Navigation through keyboard
+
+document.addEventListener("keydown", menu);
+
+function menu(e) {
     var $btnDiv = $(".btnDiv"); // All menu screens
     var $currMenu = $btnDiv.eq(idiv).children(); // Current menu screen
     var menuLength = $currMenu.length; // Current menu length
+    var $currBtn = $currMenu.eq(ibtn); // The current button 'p' element
 
-    var $currBtn; // The current button 'p' element
-    $currBtn = $currMenu.eq(ibtn);
+    console.log("$currBtn :", $currBtn);
+    $currBtn.children().addClass("btnSelect"); // Highlights default button
+    console.log($currBtn.children());
 
     if (e.key === "ArrowDown") {
         $currBtn.children().removeClass("btnSelect");
@@ -77,6 +89,8 @@ document.addEventListener("keydown", function menu(e) {
         } else if (idiv === 1 && ibtn === 1) {
             idiv = 2;
             vs1();
+        } else if (idiv === 1 && ibtn === 2) {
+            alert("AI not yet implemented!");
         } else if (idiv === 2 && ibtn === 1) {
             idiv = 3;
             ready();
@@ -85,12 +99,35 @@ document.addEventListener("keydown", function menu(e) {
             rematch();
         }
         ibtn = 1;
-
-        // Space or Enter
     }
     console.log("idiv :", idiv);
     console.log("ibtn :", ibtn);
-});
+}
+
+function keyFunc(e) {
+    if (e.key === "ArrowLeft") {
+        // Left arrow
+        icol--;
+        if (icol < 0) {
+            icol = 6;
+        }
+        selectCoin.style.gridArea = "1 / " + (icol + 1);
+    } else if (e.key === "ArrowRight") {
+        // Right arrow
+        icol++;
+        if (icol >= 7) {
+            icol = 0;
+        }
+        selectCoin.style.gridArea = "1 / " + (icol + 1);
+    } else if (e.keyCode === 32 || e.key === "Enter") {
+        // Space or Enter
+        console.log("Checkpoint 1: keyFunc");
+        dropCoin(icol);
+    }
+    return;
+}
+
+// Navigation through mouse
 
 startBtn.addEventListener("click", start);
 
@@ -104,12 +141,20 @@ function start() {
         height: "100px",
         visibility: "visible",
     });
+    idiv = 3;
 
-    $(".slot").removeClass("Yellow Red flagged");
+    document.removeEventListener("keydown", menu);
 
     win = false;
     newGame(player);
 }
+
+startBtn.addEventListener("mouseenter", function (e) {
+    console.log("start mousenter!");
+    ibtn = 1;
+    $("button").removeClass("btnSelect");
+    e.target.classList.add("btnSelect");
+});
 
 selectBtn.addEventListener("click", select);
 
@@ -122,8 +167,17 @@ function select() {
         height: "100px",
         visibility: "visible",
     });
+    ibtn = 1;
+    idiv = 1;
+    menu(0);
     return;
 }
+
+selectBtn.addEventListener("mouseenter", function (e) {
+    ibtn = 2;
+    $("button").removeClass("btnSelect");
+    e.target.classList.add("btnSelect");
+});
 
 vsBtn.addEventListener("click", vs1);
 
@@ -136,8 +190,29 @@ function vs1() {
         height: "100px",
         visibility: "visible",
     });
+    ibtn = 1;
+    idiv = 2;
+    menu(0);
+
     return;
 }
+
+vsBtn.addEventListener("mouseenter", function (e) {
+    ibtn = 1;
+    $("button").removeClass("btnSelect");
+    e.target.classList.add("btnSelect");
+});
+
+aiBtn.addEventListener("click", function () {
+    alert("AI not yet implemented!");
+    return;
+});
+
+aiBtn.addEventListener("mouseenter", function (e) {
+    ibtn = 2;
+    $("button").removeClass("btnSelect");
+    e.target.classList.add("btnSelect");
+});
 
 readyBtn.addEventListener("click", ready);
 
@@ -150,9 +225,17 @@ function ready() {
         height: "100px",
         visibility: "visible",
     });
+    idiv = 3;
+    document.removeEventListener("keydown", menu);
     newGame(player);
     return;
 }
+
+readyBtn.addEventListener("mouseenter", function (e) {
+    ibtn = 1;
+    $("button").removeClass("btnSelect");
+    e.target.classList.add("btnSelect");
+});
 
 rematchBtn.addEventListener("click", rematch);
 
@@ -171,10 +254,54 @@ function rematch() {
     });
 
     $(".slot").removeClass("Yellow Red flagged");
-
+    document.removeEventListener("keydown", menu);
+    idiv = 3;
     switchPlayer();
     win = false;
     newGame(player);
+}
+
+rematchBtn.addEventListener("mouseenter", function (e) {
+    ibtn = 1;
+    $("button").removeClass("btnSelect");
+    e.target.classList.add("btnSelect");
+});
+
+// Move selection coin using mouse
+selectDiv.addEventListener("mousemove", mouseSelect);
+
+function mouseSelect(e) {
+    console.log("mouse move!");
+    if (e.target === e.currentTarget) {
+        if (e.offsetX < 100) {
+            icol = 0;
+            selectCoin.style.gridArea = "1 / " + (icol + 1);
+        } else if (e.offsetX < 200) {
+            icol = 1;
+            selectCoin.style.gridArea = "1 / " + (icol + 1);
+        } else if (e.offsetX < 300) {
+            icol = 2;
+            selectCoin.style.gridArea = "1 / " + (icol + 1);
+        } else if (e.offsetX < 400) {
+            icol = 3;
+            selectCoin.style.gridArea = "1 / " + (icol + 1);
+        } else if (e.offsetX < 500) {
+            icol = 4;
+            selectCoin.style.gridArea = "1 / " + (icol + 1);
+        } else if (e.offsetX < 600) {
+            icol = 5;
+            selectCoin.style.gridArea = "1 / " + (icol + 1);
+        } else if (e.offsetX < 700) {
+            icol = 6;
+            selectCoin.style.gridArea = "1 / " + (icol + 1);
+        }
+    }
+}
+
+// Drop coin using mouse
+
+function clickDrop() {
+    dropCoin(icol);
 }
 
 // Gameplay functions
@@ -198,6 +325,8 @@ function switchPlayer() {
 function newGame(player) {
     selectCoin.style.visibility = "visible";
     document.addEventListener("keydown", keyFunc);
+    selectDiv.addEventListener("mousemove", mouseSelect);
+    selectCoin.addEventListener("click", clickDrop);
     $("#selectDiv").css({
         visibility: "visible",
     });
@@ -207,31 +336,11 @@ function newGame(player) {
     return;
 }
 
-function keyFunc(e) {
-    if (e.key === "ArrowLeft") {
-        // Left arrow
-        icol--;
-        if (icol < 0) {
-            icol = 6;
-        }
-        selectCoin.style.gridArea = "1 / " + (icol + 1);
-    } else if (e.key === "ArrowRight") {
-        // Right arrow
-        icol++;
-        if (icol >= 7) {
-            icol = 0;
-        }
-        selectCoin.style.gridArea = "1 / " + (icol + 1);
-    } else if (e.keyCode === 32 || e.key === "Enter") {
-        // Space or Enter
-        console.log("Checkpoint 1: keyFunc");
-        document.removeEventListener("keydown", keyFunc); // Disables keydown
-        dropCoin(icol);
-    }
-    return;
-}
-
 function dropCoin(icol) {
+    document.removeEventListener("keydown", keyFunc); // Disables keydown
+    selectDiv.removeEventListener("mousemove", mouseSelect);
+    selectCoin.removeEventListener("click", clickDrop);
+
     var irow; // Keeps track of current row / last coin row
     var $col = $(".col" + icol); // Makes a jQuery list of the slots in the current column
 
@@ -248,6 +357,8 @@ function dropCoin(icol) {
     }
     $("#infoTxt").html("Column is full!");
     document.addEventListener("keydown", keyFunc); // Enables keydown
+    selectDiv.addEventListener("mousemove", mouseSelect);
+    selectCoin.addEventListener("click", clickDrop);
     return;
 }
 
@@ -276,6 +387,8 @@ function moveCoin(icol, irow) {
             victoryDance(player);
         } else {
             document.addEventListener("keydown", keyFunc);
+            selectDiv.addEventListener("mousemove", mouseSelect);
+            selectCoin.addEventListener("click", clickDrop);
             switchPlayer();
         }
     });
@@ -333,7 +446,11 @@ function victoryDance(player) {
         height: "100px",
         visibility: "visible",
     });
+    document.addEventListener("keydown", menu);
     idiv = 4;
+    ibtn = 1;
+    menu(0);
+
     $("#winTxt").html("<span id=" + player + ">" + player + "</span> wins!");
 
     document.removeEventListener("keydown", keyFunc);
