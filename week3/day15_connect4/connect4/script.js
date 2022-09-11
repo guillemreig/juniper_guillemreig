@@ -44,6 +44,9 @@ clearTimeout(timer);
         height: "100px",
         visibility: "visible",
     });
+    $("#copyDiv").css({
+        visibility: "visible",
+    });
     idiv = 0; // Currently at menu index 0
     ibtn = 1;
     menu(0);
@@ -137,6 +140,16 @@ function start() {
         height: "0px",
         visibility: "hidden",
     });
+    $("#copyDiv").css({
+        visibility: "hidden",
+    });
+    $(".rainDiv").css({
+        visibility: "hidden",
+    });
+    document.removeEventListener("transitionend", rainReset);
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    clearTimeout(timer3);
     $("#infoDiv").css({
         height: "100px",
         visibility: "visible",
@@ -161,6 +174,9 @@ selectBtn.addEventListener("click", select);
 function select() {
     $("#startDiv").css({
         height: "0px",
+        visibility: "hidden",
+    });
+    $("#copyDiv").css({
         visibility: "hidden",
     });
     $("#gameDiv").css({
@@ -221,6 +237,13 @@ function ready() {
         height: "0px",
         visibility: "hidden",
     });
+    $(".rainDiv").css({
+        visibility: "hidden",
+    });
+    document.removeEventListener("transitionend", rainReset);
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    clearTimeout(timer3);
     $("#infoDiv").css({
         height: "100px",
         visibility: "visible",
@@ -462,12 +485,65 @@ function victoryDance(player) {
 }
 
 // Animations
-/*
-    if (left <= -links[0].offsetWidth) {
-        left = left + links[0].offsetWidth; //
-        headlines.appendChild(document.getElementsByTagName("a")[0]); // Remove the first link and make it the last
-    } // This will run when the first link is completely offscreen
 
-    headlines.style.left = left + "px"; // This moves the box
-    reqId = requestAnimationFrame(moveHeadlines); // 2. This keeps it going
-    */
+var rainArr1 = document.querySelectorAll("#rainDiv1>div");
+var $rainCoins1 = $("#rainDiv1 div");
+var rainCoin1;
+var oldCoin1;
+
+var rainArr2 = document.querySelectorAll("#rainDiv2>div");
+var $rainCoins2 = $("#rainDiv2 div");
+var rainCoin2;
+var oldCoin2;
+
+var rainArr3 = document.querySelectorAll("#rainDiv3>div");
+var $rainCoins3 = $("#rainDiv3 div");
+var rainCoin3;
+var oldCoin3;
+
+timer1 = setTimeout(coinRain1, 1000);
+timer2 = setTimeout(coinRain2, 4500);
+timer3 = setTimeout(coinRain3, 6000);
+
+function coinRain1() {
+    do {
+        rainCoin1 = Math.floor(Math.random() * 10);
+    } while (rainCoin1 == oldCoin1);
+    oldCoin1 = rainCoin1;
+
+    console.log("rainCoin1", rainCoin1);
+    rainArr1[rainCoin1].style.transition = "transform 2s linear";
+    rainArr1[rainCoin1].style.transform = "translateY(120vh)";
+    timer1 = setTimeout(coinRain1, 2230);
+}
+
+function coinRain2() {
+    do {
+        rainCoin2 = Math.floor(Math.random() * 12);
+    } while (rainCoin2 == oldCoin2);
+    oldCoin2 = rainCoin2;
+
+    console.log("rainCoin2", rainCoin2);
+    rainArr2[rainCoin2].style.transition = "transform 2.5s linear";
+    rainArr2[rainCoin2].style.transform = "translateY(120vh)";
+    timer2 = setTimeout(coinRain2, 1630);
+}
+
+function coinRain3() {
+    do {
+        rainCoin3 = Math.floor(Math.random() * 16);
+    } while (rainCoin3 == oldCoin3);
+    oldCoin3 = rainCoin3;
+
+    console.log("rainCoin3", rainCoin3);
+    rainArr3[rainCoin3].style.transition = "transform 3.5s linear";
+    rainArr3[rainCoin3].style.transform = "translateY(120vh)";
+    timer3 = setTimeout(coinRain3, 1830);
+}
+
+document.addEventListener("transitionend", rainReset); // Resets Coins
+
+function rainReset(e) {
+    e.target.style.transition = "tnone";
+    e.target.style.transform = "";
+}
