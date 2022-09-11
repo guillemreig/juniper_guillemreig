@@ -286,15 +286,15 @@ button {
     }
 
     50% {
-        color: cyan;
+        color: lightseagreen;
     }
 
     60% {
-        color: blue;
+        color: cyan;
     }
 
     70% {
-        color: indigo;
+        color: blue;
     }
 
     80% {

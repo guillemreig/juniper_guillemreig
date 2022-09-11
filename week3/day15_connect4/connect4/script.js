@@ -268,6 +268,13 @@ function rematch() {
         height: "0px",
         visibility: "hidden",
     });
+    $(".rainDiv").css({
+        visibility: "hidden",
+    });
+    document.removeEventListener("transitionend", rainReset);
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    clearTimeout(timer3);
     $("#infoDiv").css({
         height: "100px",
         visibility: "visible",
@@ -469,6 +476,15 @@ function victoryDance(player) {
         height: "100px",
         visibility: "visible",
     });
+    $(".rainDiv").css({
+        visibility: "visible",
+    });
+
+    timer1 = setTimeout(coinRain1, 2000);
+    timer2 = setTimeout(coinRain2, 1000);
+    timer3 = setTimeout(coinRain3, 0);
+    document.addEventListener("transitionend", rainReset); // Resets Coins
+
     document.addEventListener("keydown", menu);
     idiv = 4;
     ibtn = 1;
@@ -501,9 +517,11 @@ var $rainCoins3 = $("#rainDiv3 div");
 var rainCoin3;
 var oldCoin3;
 
-timer1 = setTimeout(coinRain1, 1000);
-timer2 = setTimeout(coinRain2, 4500);
-timer3 = setTimeout(coinRain3, 6000);
+var timer1 = setTimeout(coinRain1, 1000);
+var timer2 = setTimeout(coinRain2, 4500);
+var timer3 = setTimeout(coinRain3, 6000);
+
+document.addEventListener("transitionend", rainReset); // Resets Coins
 
 function coinRain1() {
     do {
@@ -540,8 +558,6 @@ function coinRain3() {
     rainArr3[rainCoin3].style.transform = "translateY(120vh)";
     timer3 = setTimeout(coinRain3, 1830);
 }
-
-document.addEventListener("transitionend", rainReset); // Resets Coins
 
 function rainReset(e) {
     e.target.style.transition = "tnone";
