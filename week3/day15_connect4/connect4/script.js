@@ -1,3 +1,5 @@
+// Board
+
 // Buttons
 
 var startBtn = document.getElementById("startBtn"); // Quick start button
@@ -16,6 +18,7 @@ var columns = 7; // For calculations and future procedural boards
 var rows = 6;
 var winLine = 4;
 */
+
 var icol = 3; // Keeps track of current selected column
 
 var player = "Yellow"; // Keeps track of current player. Starting player "Yellow"
@@ -40,31 +43,48 @@ clearTimeout(timer);
 
 // Event listeners
 document.addEventListener("keydown", function menu(e) {
+    // Menu navigation through keyboard
     var $btnDiv = $(".btnDiv"); // All menu screens
     var $currMenu = $btnDiv.eq(idiv).children(); // Current menu screen
     var menuLength = $currMenu.length; // Current menu length
 
     var $currBtn; // The current button 'p' element
+    $currBtn = $currMenu.eq(ibtn);
 
     if (e.key === "ArrowDown") {
+        $currBtn.children().removeClass("btnSelect");
         ibtn--;
         if (ibtn < 1) {
             ibtn = menuLength - 1;
         }
-        $("button").removeClass("btnSelect");
         $currBtn = $currMenu.eq(ibtn);
         $currBtn.children().addClass("btnSelect");
     } else if (e.key === "ArrowUp") {
+        $currBtn.children().removeClass("btnSelect");
         ibtn++;
         if (ibtn > menuLength - 1) {
             ibtn = 1;
         }
-        $("button").removeClass("btnSelect");
         $currBtn = $currMenu.eq(ibtn);
         $currBtn.children().addClass("btnSelect");
     } else if (e.keyCode === 32 || e.key === "Enter") {
         if (idiv === 0 && ibtn === 1) {
+            idiv = 3;
+            start();
+        } else if (idiv === 0 && ibtn === 2) {
+            idiv = 1;
+            select();
+        } else if (idiv === 1 && ibtn === 1) {
+            idiv = 2;
+            vs1();
+        } else if (idiv === 2 && ibtn === 1) {
+            idiv = 3;
+            ready();
+        } else if (idiv === 4 && ibtn === 1) {
+            idiv = 3;
+            rematch();
         }
+        ibtn = 1;
 
         // Space or Enter
     }
@@ -72,7 +92,9 @@ document.addEventListener("keydown", function menu(e) {
     console.log("ibtn :", ibtn);
 });
 
-startBtn.addEventListener("click", function (e) {
+startBtn.addEventListener("click", start);
+
+function start() {
     console.log("Checkpoint 0. Start");
     $("#startDiv").css({
         height: "0px",
@@ -87,9 +109,11 @@ startBtn.addEventListener("click", function (e) {
 
     win = false;
     newGame(player);
-});
+}
 
-selectBtn.addEventListener("click", function (e) {
+selectBtn.addEventListener("click", select);
+
+function select() {
     $("#startDiv").css({
         height: "0px",
         visibility: "hidden",
@@ -99,9 +123,11 @@ selectBtn.addEventListener("click", function (e) {
         visibility: "visible",
     });
     return;
-});
+}
 
-vsBtn.addEventListener("click", function (e) {
+vsBtn.addEventListener("click", vs1);
+
+function vs1() {
     $("#gameDiv").css({
         height: "0px",
         visibility: "hidden",
@@ -111,9 +137,11 @@ vsBtn.addEventListener("click", function (e) {
         visibility: "visible",
     });
     return;
-});
+}
 
-readyBtn.addEventListener("click", function (e) {
+readyBtn.addEventListener("click", ready);
+
+function ready() {
     $("#readyDiv").css({
         height: "0px",
         visibility: "hidden",
@@ -124,9 +152,11 @@ readyBtn.addEventListener("click", function (e) {
     });
     newGame(player);
     return;
-});
+}
 
-rematchBtn.addEventListener("click", function (e) {
+rematchBtn.addEventListener("click", rematch);
+
+function rematch() {
     console.log("Checkpoint 5. Restart");
     $("#winDiv").css({
         height: "0px",
@@ -145,7 +175,7 @@ rematchBtn.addEventListener("click", function (e) {
     switchPlayer();
     win = false;
     newGame(player);
-});
+}
 
 // Gameplay functions
 
@@ -303,6 +333,7 @@ function victoryDance(player) {
         height: "100px",
         visibility: "visible",
     });
+    idiv = 4;
     $("#winTxt").html("<span id=" + player + ">" + player + "</span> wins!");
 
     document.removeEventListener("keydown", keyFunc);
