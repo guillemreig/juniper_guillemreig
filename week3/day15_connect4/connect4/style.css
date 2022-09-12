@@ -246,6 +246,22 @@ button {
     z-index: -3;
 }
 
+#screenDiv {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    background-color: rgb(20, 20, 20);
+    transition: all 1s ease-in;
+}
+
+#pressStart {
+    position: relative;
+    top: 350px;
+    animation: 1s infinite pressStart;
+}
+
 @keyframes select {
     50% {
         background-color: rgba(255, 255, 255, 0);
@@ -266,46 +282,51 @@ button {
 
 @keyframes rainbow {
     0% {
-        color: red;
-    }
-
-    10% {
-        color: orange;
-    }
-
-    20% {
-        color: yellow;
-    }
-
-    30% {
-        color: lawngreen;
-    }
-
-    40% {
-        color: green;
-    }
-
-    50% {
-        color: lightseagreen;
-    }
-
-    60% {
-        color: cyan;
-    }
-
-    70% {
-        color: blue;
-    }
-
-    80% {
-        color: blueviolet;
-    }
-
-    90% {
         color: fuchsia;
     }
 
-    100% {
+    10% {
         color: red;
+    }
+
+    20% {
+        color: orange;
+    }
+
+    30% {
+        color: yellow;
+    }
+
+    40% {
+        color: lawngreen;
+    }
+
+    50% {
+        color: forestgreen;
+    }
+
+    60% {
+        color: lightseagreen;
+    }
+
+    70% {
+        color: cyan;
+    }
+
+    80% {
+        color: blue;
+    }
+
+    90% {
+        color: blueviolet;
+    }
+    100% {
+        color: fuchsia;
+    }
+}
+
+@keyframes pressStart {
+    50% {
+        color: rgba(255, 255, 255, 0);
     }
 }

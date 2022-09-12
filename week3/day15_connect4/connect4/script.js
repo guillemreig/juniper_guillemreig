@@ -39,7 +39,41 @@ timer = setTimeout(function intro(){}, 1000)
 clearTimeout(timer);
 */
 
-(function intro() {
+var timer1;
+var timer2;
+var timer3;
+
+var pressStart = document.getElementById("pressStart");
+var screenDiv = document.getElementById("screenDiv");
+
+pressStart.addEventListener("click", cutscene);
+document.addEventListener("keydown", press);
+
+function press(e) {
+    if (e.keyCode === 32 || e.key === "Enter") {
+        document.removeEventListener("keydown", press);
+        cutscene();
+    }
+    return;
+}
+
+function cutscene() {
+    sfxSelect();
+    pressStart.removeEventListener("click", intro);
+    pressStart.style.visibility = "hidden";
+    musicMenu();
+
+    setTimeout(function () {
+        screenDiv.style.backgroundColor = "rgba(20, 20, 20, 0)";
+        intro();
+    }, 500);
+
+    setTimeout(function () {
+        screenDiv.style.visibility = "hidden";
+    }, 1500);
+}
+
+function intro() {
     $("#startDiv").css({
         height: "100px",
         visibility: "visible",
@@ -47,14 +81,19 @@ clearTimeout(timer);
     $("#copyDiv").css({
         visibility: "visible",
     });
+    timer1 = setTimeout(coinRain1, 2300);
+    timer2 = setTimeout(coinRain2, 5800);
+    timer3 = setTimeout(coinRain3, 7300);
+    document.addEventListener("transitionend", rainReset); // Resets Coins
+
+    document.addEventListener("keydown", menu);
+
     idiv = 0; // Currently at menu index 0
     ibtn = 1;
     menu(0);
-})();
+}
 
 // Navigation through keyboard
-
-document.addEventListener("keydown", menu);
 
 function menu(e) {
     var $btnDiv = $(".btnDiv"); // All menu screens
@@ -135,6 +174,7 @@ function keyFunc(e) {
 startBtn.addEventListener("click", start);
 
 function start() {
+    sfxSelect();
     console.log("Checkpoint 0. Start");
     $("#startDiv").css({
         height: "0px",
@@ -150,6 +190,8 @@ function start() {
     clearTimeout(timer1);
     clearTimeout(timer2);
     clearTimeout(timer3);
+    music1.pause();
+    musicBoard();
     $("#infoDiv").css({
         height: "100px",
         visibility: "visible",
@@ -172,6 +214,7 @@ startBtn.addEventListener("mouseenter", function (e) {
 selectBtn.addEventListener("click", select);
 
 function select() {
+    sfxSelect();
     $("#startDiv").css({
         height: "0px",
         visibility: "hidden",
@@ -198,6 +241,7 @@ selectBtn.addEventListener("mouseenter", function (e) {
 vsBtn.addEventListener("click", vs1);
 
 function vs1() {
+    sfxSelect();
     $("#gameDiv").css({
         height: "0px",
         visibility: "hidden",
@@ -233,6 +277,7 @@ aiBtn.addEventListener("mouseenter", function (e) {
 readyBtn.addEventListener("click", ready);
 
 function ready() {
+    sfxSelect();
     $("#readyDiv").css({
         height: "0px",
         visibility: "hidden",
@@ -244,6 +289,8 @@ function ready() {
     clearTimeout(timer1);
     clearTimeout(timer2);
     clearTimeout(timer3);
+    music1.pause();
+    musicBoard();
     $("#infoDiv").css({
         height: "100px",
         visibility: "visible",
@@ -263,6 +310,7 @@ readyBtn.addEventListener("mouseenter", function (e) {
 rematchBtn.addEventListener("click", rematch);
 
 function rematch() {
+    sfxSelect();
     console.log("Checkpoint 5. Restart");
     $("#winDiv").css({
         height: "0px",
@@ -275,6 +323,9 @@ function rematch() {
     clearTimeout(timer1);
     clearTimeout(timer2);
     clearTimeout(timer3);
+    music3.pause();
+    music3.currentTime = 1;
+    musicBoard();
     $("#infoDiv").css({
         height: "100px",
         visibility: "visible",
@@ -395,16 +446,24 @@ function dropCoin(icol) {
 function moveCoin(icol, irow) {
     console.log("Checkpoint 3: moveCoin");
 
+    sfxFall();
     var $col = $(".col" + icol);
     var h = $col.length - irow; // The height of the drop
 
     selectCoin.style.animation = "none";
     selectCoin.style.transition = "all " + h * 100 + "ms linear"; // Adapts fall time to height
     selectCoin.style.transform = "translateY(" + h * 100 + "px)"; // The distance to move
+    setTimeout(function () {
+        sfx2.pause();
+        sfx2.currentTime = 0;
+        sfx3.pause();
+        sfx3.currentTime = 0;
+    }, h * 99);
 
     document.addEventListener("transitionend", function refresh(e) {
         console.log("Checkpoint 4: transitionend");
 
+        sfxCoin();
         document.removeEventListener("transitionend", refresh); // Only triggers once
 
         $col.eq(irow).addClass(player);
@@ -485,6 +544,10 @@ function victoryDance(player) {
     timer3 = setTimeout(coinRain3, 0);
     document.addEventListener("transitionend", rainReset); // Resets Coins
 
+    music2.pause();
+    music2.currentTime = 0;
+    musicWin();
+
     document.addEventListener("keydown", menu);
     idiv = 4;
     ibtn = 1;
@@ -516,12 +579,6 @@ var rainArr3 = document.querySelectorAll("#rainDiv3>div");
 var $rainCoins3 = $("#rainDiv3 div");
 var rainCoin3;
 var oldCoin3;
-
-var timer1 = setTimeout(coinRain1, 1000);
-var timer2 = setTimeout(coinRain2, 4500);
-var timer3 = setTimeout(coinRain3, 6000);
-
-document.addEventListener("transitionend", rainReset); // Resets Coins
 
 function coinRain1() {
     do {
@@ -562,4 +619,53 @@ function coinRain3() {
 function rainReset(e) {
     e.target.style.transition = "tnone";
     e.target.style.transform = "";
+}
+
+// Music and SFX // I googled this part. I couldn't figure out why autoplay wasn't working
+
+//window.addEventListener("DOMContentLoaded", musicMenu);
+//window.addEventListener("DOMContentLoaded", musicMenu);
+
+var music1;
+var music2;
+var music3;
+var sfx1;
+var sfx2;
+var sfx3;
+
+function musicMenu() {
+    music1 = document.getElementById("music1");
+    music1.volume = 1;
+    music1.play();
+}
+
+function musicBoard() {
+    music2 = document.getElementById("music2");
+    music2.volume = 1;
+    music2.play();
+}
+
+function musicWin() {
+    music3 = document.getElementById("music3");
+    music3.volume = 1;
+    music3.currentTime = 1;
+    music3.play();
+}
+
+function sfxSelect() {
+    sfx1 = document.getElementById("sfx1");
+    sfx1.volume = 1;
+    sfx1.play();
+}
+
+function sfxFall() {
+    sfx2 = document.getElementById("sfx2");
+    sfx2.volume = 0.7;
+    sfx2.play();
+}
+
+function sfxCoin() {
+    sfx3 = document.getElementById("sfx3");
+    sfx3.volume = 1;
+    sfx3.play();
 }
