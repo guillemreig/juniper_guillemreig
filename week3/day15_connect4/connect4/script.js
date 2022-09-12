@@ -535,10 +535,10 @@ function checkForWin(icol, irow) {
 function victoryDance(player) {
     console.log("Checkpoint 6: victoryDance");
 
-    if ((player = "Yellow")) {
+    if (player === "Yellow") {
         score1++;
         $score1.html(score1);
-    } else if ((player = "Red")) {
+    } else if (player === "Red") {
         score2++;
         $score2.html(score2);
     }
@@ -663,7 +663,7 @@ function musicBoard() {
 
 function musicWin() {
     music3 = document.getElementById("music3");
-    music3.volume = 1;
+    music3.volume = 0.6;
     music3.currentTime = 1;
     music3.play();
 }
