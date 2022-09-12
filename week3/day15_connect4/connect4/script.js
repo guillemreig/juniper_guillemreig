@@ -33,6 +33,14 @@ selectCoin.classList.add("Yellow"); // The selecting coin starts being yellow
 var idiv; // The index of the menu division currently displayed
 var ibtn = 1; // The index of the button currently selected
 
+var score1 = 0;
+var score2 = 0;
+
+var $score1 = $("#score1");
+console.log("$score1", $score1);
+
+var $score2 = $("#score2");
+console.log("$score2", $score2);
 /*
 // The future game intro sequence screen
 timer = setTimeout(function intro(){}, 1000)
@@ -526,6 +534,14 @@ function checkForWin(icol, irow) {
 
 function victoryDance(player) {
     console.log("Checkpoint 6: victoryDance");
+
+    if ((player = "Yellow")) {
+        score1++;
+        $score1.html(score1);
+    } else if ((player = "Red")) {
+        score2++;
+        $score2.html(score2);
+    }
 
     $("#infoDiv").css({
         height: "0px",

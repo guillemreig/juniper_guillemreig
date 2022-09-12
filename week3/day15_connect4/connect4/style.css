@@ -88,6 +88,21 @@ button {
     top: 0px;
 }
 
+#infoDiv {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#infoDiv h1 {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#infoTxt {
+    width: 50%;
+}
+
 #winDiv p {
     top: 0px;
 }
@@ -260,6 +275,7 @@ button {
     position: relative;
     top: 350px;
     animation: 1s infinite pressStart;
+    cursor: pointer;
 }
 
 @keyframes select {
