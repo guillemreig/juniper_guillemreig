@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Spicefy Music</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="bodyDiv">
+            <div id="headerDiv">
+                <h1 id="logo">Spicefy Search</h1>
+                <div>
+                    <input type="text" />
+                    <select>
+                        <option id="artist">artist</option>
+                        <option id="album">album</option>
+                    </select>
+                    <button id="searchBtn">Submit</button>
+                </div>
+            </div>
+            <div id="infoDiv"><h1 id="info">Searching...</h1></div>
+            <div id="results-container">
+                <div class="resultDiv">
+                    <img class="resultImg" src="https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2/image-size/original?v=mpbl-1&px=-1" alt="no image available" />
+                    <div class="resultTxt">
+                        <h2 class="resultName">Result Name</h1>
+                        <h3 class="resultInfo">Year:</h3>
+                        <h3 class="resultInfo">Genre:</h3>
+                        <h3 class="resultInfo">Language:</h3>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="buttonDiv"><button id="moreBtn">MORE</button></div>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.6.1.js"
+            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+            crossorigin="anonymous"
+        ></script>
+        <script src="script.js"></script>
+    </body>
+</html>

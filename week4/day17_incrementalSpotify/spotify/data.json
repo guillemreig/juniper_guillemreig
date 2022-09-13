@@ -1,0 +1,590 @@
+{
+    "artists": {
+        "href": "https://api.spotify.com/v1/search?query=coldplay&type=artist&offset=0&limit=20",
+        "items": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/4gzpq5DPGxSnKTe4SA8HAU"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 38205752
+                },
+                "genres": ["permanent wave", "pop"],
+                "href": "https://api.spotify.com/v1/artists/4gzpq5DPGxSnKTe4SA8HAU",
+                "id": "4gzpq5DPGxSnKTe4SA8HAU",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb865a3301762a8fce048cb469",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174865a3301762a8fce048cb469",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178865a3301762a8fce048cb469",
+                        "width": 160
+                    }
+                ],
+                "name": "Coldplay",
+                "popularity": 88,
+                "type": "artist",
+                "uri": "spotify:artist:4gzpq5DPGxSnKTe4SA8HAU"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/14cDx3yNMNO94Ghqo3kVoF"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 230
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/14cDx3yNMNO94Ghqo3kVoF",
+                "id": "14cDx3yNMNO94Ghqo3kVoF",
+                "images": [],
+                "name": "Coldplay & Lele",
+                "popularity": 5,
+                "type": "artist",
+                "uri": "spotify:artist:14cDx3yNMNO94Ghqo3kVoF"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/69GGBxA162lTqCwzJG5jLp"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 19418621
+                },
+                "genres": [
+                    "dance pop",
+                    "edm",
+                    "electropop",
+                    "pop",
+                    "pop dance",
+                    "tropical house"
+                ],
+                "href": "https://api.spotify.com/v1/artists/69GGBxA162lTqCwzJG5jLp",
+                "id": "69GGBxA162lTqCwzJG5jLp",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb3c02f4fb4cc9187c488afd50",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051743c02f4fb4cc9187c488afd50",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1783c02f4fb4cc9187c488afd50",
+                        "width": 160
+                    }
+                ],
+                "name": "The Chainsmokers",
+                "popularity": 80,
+                "type": "artist",
+                "uri": "spotify:artist:69GGBxA162lTqCwzJG5jLp"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/4rug1v8OwBTLKCFbkyGiVl"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 1
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/4rug1v8OwBTLKCFbkyGiVl",
+                "id": "4rug1v8OwBTLKCFbkyGiVl",
+                "images": [],
+                "name": "ColdPlay Wu",
+                "popularity": 5,
+                "type": "artist",
+                "uri": "spotify:artist:4rug1v8OwBTLKCFbkyGiVl"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/4IQ3LhwLnc7Fhl8WYmq0NY"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 63
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/4IQ3LhwLnc7Fhl8WYmq0NY",
+                "id": "4IQ3LhwLnc7Fhl8WYmq0NY",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273da14ab711891a37122c160ee",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02da14ab711891a37122c160ee",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851da14ab711891a37122c160ee",
+                        "width": 64
+                    }
+                ],
+                "name": "The Scientists",
+                "popularity": 30,
+                "type": "artist",
+                "uri": "spotify:artist:4IQ3LhwLnc7Fhl8WYmq0NY"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/54wN2dOk1qcTsURH43DgjA"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 10
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/54wN2dOk1qcTsURH43DgjA",
+                "id": "54wN2dOk1qcTsURH43DgjA",
+                "images": [],
+                "name": "ColdPlayTae",
+                "popularity": 0,
+                "type": "artist",
+                "uri": "spotify:artist:54wN2dOk1qcTsURH43DgjA"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1ilUB3NMw5oU1jMmnrUkF7"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 3
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/1ilUB3NMw5oU1jMmnrUkF7",
+                "id": "1ilUB3NMw5oU1jMmnrUkF7",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b27392c41e27dd5ba6c2dbe3df17",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e0292c41e27dd5ba6c2dbe3df17",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d0000485192c41e27dd5ba6c2dbe3df17",
+                        "width": 64
+                    }
+                ],
+                "name": "My Fantastic",
+                "popularity": 22,
+                "type": "artist",
+                "uri": "spotify:artist:1ilUB3NMw5oU1jMmnrUkF7"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/2wKgCt0edHo68HTsrWEJb2"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 389
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/2wKgCt0edHo68HTsrWEJb2",
+                "id": "2wKgCt0edHo68HTsrWEJb2",
+                "images": [],
+                "name": "Karaoke - Coldplay",
+                "popularity": 1,
+                "type": "artist",
+                "uri": "spotify:artist:2wKgCt0edHo68HTsrWEJb2"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/6MERXsiRbur2oJZFgYRDKz"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 632459
+                },
+                "genres": ["bow pop"],
+                "href": "https://api.spotify.com/v1/artists/6MERXsiRbur2oJZFgYRDKz",
+                "id": "6MERXsiRbur2oJZFgYRDKz",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb15ea9aa08b96f51e3bacf0cd",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab6761610000517415ea9aa08b96f51e3bacf0cd",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f17815ea9aa08b96f51e3bacf0cd",
+                        "width": 160
+                    }
+                ],
+                "name": "Vitamin String Quartet",
+                "popularity": 62,
+                "type": "artist",
+                "uri": "spotify:artist:6MERXsiRbur2oJZFgYRDKz"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1ztMJAoRFWrN0B0mM880Gl"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 550
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/1ztMJAoRFWrN0B0mM880Gl",
+                "id": "1ztMJAoRFWrN0B0mM880Gl",
+                "images": [],
+                "name": "Coldplay Metal Tribute",
+                "popularity": 1,
+                "type": "artist",
+                "uri": "spotify:artist:1ztMJAoRFWrN0B0mM880Gl"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/21UnmryT9an5MpdOWfRSVe"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 8
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/21UnmryT9an5MpdOWfRSVe",
+                "id": "21UnmryT9an5MpdOWfRSVe",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b273d368ff40b238575ba5897700",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e02d368ff40b238575ba5897700",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d00004851d368ff40b238575ba5897700",
+                        "width": 64
+                    }
+                ],
+                "name": "Perfect Perspectives",
+                "popularity": 20,
+                "type": "artist",
+                "uri": "spotify:artist:21UnmryT9an5MpdOWfRSVe"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0WHCs1nv58vHXWrb3AdmOw"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 151
+                },
+                "genres": [],
+                "href": "https://api.spotify.com/v1/artists/0WHCs1nv58vHXWrb3AdmOw",
+                "id": "0WHCs1nv58vHXWrb3AdmOw",
+                "images": [],
+                "name": "Coldplay, Base Karaoke + Choirs",
+                "popularity": 1,
+                "type": "artist",
+                "uri": "spotify:artist:0WHCs1nv58vHXWrb3AdmOw"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/163PshEvNd3i3RdxHXGTii"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 49
+                },
+                "genres": ["classify"],
+                "href": "https://api.spotify.com/v1/artists/163PshEvNd3i3RdxHXGTii",
+                "id": "163PshEvNd3i3RdxHXGTii",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb62152cb1cd2424a992024a71",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab6761610000517462152cb1cd2424a992024a71",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f17862152cb1cd2424a992024a71",
+                        "width": 160
+                    }
+                ],
+                "name": "Playa Piano",
+                "popularity": 31,
+                "type": "artist",
+                "uri": "spotify:artist:163PshEvNd3i3RdxHXGTii"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/51Blml2LZPmy7TTiAg47vQ"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 10149552
+                },
+                "genres": ["irish rock", "permanent wave", "rock"],
+                "href": "https://api.spotify.com/v1/artists/51Blml2LZPmy7TTiAg47vQ",
+                "id": "51Blml2LZPmy7TTiAg47vQ",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb76d4c3c24368281c4dea2f41",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab6761610000517476d4c3c24368281c4dea2f41",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f17876d4c3c24368281c4dea2f41",
+                        "width": 160
+                    }
+                ],
+                "name": "U2",
+                "popularity": 76,
+                "type": "artist",
+                "uri": "spotify:artist:51Blml2LZPmy7TTiAg47vQ"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3AQRLZ9PuTAozP28Skbq8V"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 7446491
+                },
+                "genres": [
+                    "celtic rock",
+                    "dance pop",
+                    "neo mellow",
+                    "pop",
+                    "pop rock",
+                    "uk pop"
+                ],
+                "href": "https://api.spotify.com/v1/artists/3AQRLZ9PuTAozP28Skbq8V",
+                "id": "3AQRLZ9PuTAozP28Skbq8V",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebf01bf904b446e4a043acb867",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174f01bf904b446e4a043acb867",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178f01bf904b446e4a043acb867",
+                        "width": 160
+                    }
+                ],
+                "name": "The Script",
+                "popularity": 73,
+                "type": "artist",
+                "uri": "spotify:artist:3AQRLZ9PuTAozP28Skbq8V"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0zOcE3mg9nS6l3yxt1Y0bK"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 3698778
+                },
+                "genres": ["neo mellow", "piano rock", "pop", "pop rock"],
+                "href": "https://api.spotify.com/v1/artists/0zOcE3mg9nS6l3yxt1Y0bK",
+                "id": "0zOcE3mg9nS6l3yxt1Y0bK",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb0f1175c762fb80f71469b344",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051740f1175c762fb80f71469b344",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1780f1175c762fb80f71469b344",
+                        "width": 160
+                    }
+                ],
+                "name": "The Fray",
+                "popularity": 68,
+                "type": "artist",
+                "uri": "spotify:artist:0zOcE3mg9nS6l3yxt1Y0bK"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/53A0W3U0s8diEn9RhXQhVz"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 2633491
+                },
+                "genres": ["neo mellow", "piano rock", "pop rock"],
+                "href": "https://api.spotify.com/v1/artists/53A0W3U0s8diEn9RhXQhVz",
+                "id": "53A0W3U0s8diEn9RhXQhVz",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb6fa4f7efaf78eb1bc0486d27",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051746fa4f7efaf78eb1bc0486d27",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1786fa4f7efaf78eb1bc0486d27",
+                        "width": 160
+                    }
+                ],
+                "name": "Keane",
+                "popularity": 71,
+                "type": "artist",
+                "uri": "spotify:artist:53A0W3U0s8diEn9RhXQhVz"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/5Pwc4xIPtQLFEnJriah9YJ"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 14115322
+                },
+                "genres": ["piano rock", "pop", "pop rock"],
+                "href": "https://api.spotify.com/v1/artists/5Pwc4xIPtQLFEnJriah9YJ",
+                "id": "5Pwc4xIPtQLFEnJriah9YJ",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb77bf00f67e21f514dc44c485",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab6761610000517477bf00f67e21f514dc44c485",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f17877bf00f67e21f514dc44c485",
+                        "width": 160
+                    }
+                ],
+                "name": "OneRepublic",
+                "popularity": 84,
+                "type": "artist",
+                "uri": "spotify:artist:5Pwc4xIPtQLFEnJriah9YJ"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/2qk9voo8llSGYcZ6xrBzKx"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 5014179
+                },
+                "genres": ["modern rock", "rock"],
+                "href": "https://api.spotify.com/v1/artists/2qk9voo8llSGYcZ6xrBzKx",
+                "id": "2qk9voo8llSGYcZ6xrBzKx",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb8fbd402cfd8cc6ce926a2229",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051748fbd402cfd8cc6ce926a2229",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1788fbd402cfd8cc6ce926a2229",
+                        "width": 160
+                    }
+                ],
+                "name": "Kings of Leon",
+                "popularity": 73,
+                "type": "artist",
+                "uri": "spotify:artist:2qk9voo8llSGYcZ6xrBzKx"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/53XhwfbYqKCa1cC15pYq2q"
+                },
+                "followers": {
+                    "href": null,
+                    "total": 41584144
+                },
+                "genres": ["modern rock", "rock"],
+                "href": "https://api.spotify.com/v1/artists/53XhwfbYqKCa1cC15pYq2q",
+                "id": "53XhwfbYqKCa1cC15pYq2q",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb920dc1f617550de8388f368e",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174920dc1f617550de8388f368e",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178920dc1f617550de8388f368e",
+                        "width": 160
+                    }
+                ],
+                "name": "Imagine Dragons",
+                "popularity": 88,
+                "type": "artist",
+                "uri": "spotify:artist:53XhwfbYqKCa1cC15pYq2q"
+            }
+        ],
+        "limit": 20,
+        "next": "https://api.spotify.com/v1/search?query=coldplay&type=artist&offset=20&limit=20",
+        "offset": 0,
+        "previous": null,
+        "total": 26
+    }
+}

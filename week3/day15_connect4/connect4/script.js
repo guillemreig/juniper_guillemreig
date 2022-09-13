@@ -581,7 +581,7 @@ function victoryDance(player) {
 
 // Animations
 
-var rainArr1 = document.querySelectorAll("#rainDiv1>div");
+var rainArr1 = document.querySelectorAll("#rainDiv1>div"); // Array-like element
 var $rainCoins1 = $("#rainDiv1 div");
 var rainCoin1;
 var oldCoin1;
@@ -633,7 +633,7 @@ function coinRain3() {
 }
 
 function rainReset(e) {
-    e.target.style.transition = "tnone";
+    e.target.style.transition = "none";
     e.target.style.transform = "";
 }
 
