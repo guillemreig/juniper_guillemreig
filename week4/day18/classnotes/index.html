@@ -1,60 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Handlebars</title>
+        <meta charset="utf-8" />
         <link rel="stylesheet" href="style.css" />
+        <title>Handlebars Fun 🐶</title>
     </head>
+
     <body>
-        <!-- Empty div that we will be adding info -->
-        <!--<div class="juniper-container"></div>-->
+        <!-- 1st Example! -->
 
-        <!-- Inside this script tag is where our hb code will go! -->
-        <!--<script id="juniperId" type="text/x-handlebars-template">
-            <h1>Hello {{name}}!</h1>
-            <h2>Your nickname is {{nickname}}.</h2>
-            <ul>Favorite foods:-->
+        <!-- empty div that we'll be adding info into -->
+        <!-- <div class="juniper-container"></div> -->
 
-        <!-- {{#favoriteFoods}}
-                <li>{{this}}</li>
-                {{/favoriteFoods}} -->
+        <!-- inside this script tag is where our hb code will go! -->
+        <!-- <script id="juniperId" type="text/x-handlebars-template">
+        <h1>Hello {{name}}</h1>
+        <h3>Your nickname is: {{nickname}}</h3>
 
-        <!--{{#each favoriteFoods}}
-                <li>{{.}}</li>
-                {{/each}}
-            </ul>
-        </script> -->
-        <script id="dogsId" type="text/handlebar">
-        
-        {{#dogs}}
-        <div class="container">
-            <div class="card">
-                <img src={{image}} />
-                <h2>George</h2>
+        Favorite Foods:
+        <ul>
+            {{#favoriteFoods}}
+            <li>{{.}}</li>
+            {{/favoriteFoods}}
+        </ul>
+    </script> -->
 
-                <section>
-                    <div class="properties">Breed</div>
-                    <div class="values">
-                        <p>Akita</p>
-                    </div>
-                </section>
+        <!-- 2nd Example - Doggo Data 🐶-->
+        <!-- empty div that we'll add our info to -->
+        <div class="dogs-info"></div>
 
-                <section>
-                    <div class="properties">temperament:</div>
-                    <div class="values">
+        <script id="dogsId" type="text/x-handlebars-template">
+            {{#dogs}}
+                <div class="container">
+                    <div class="card">
+                        <img src={{image}} />
+                        <h2>{{name}}</h2>
+
+                        <section>
+                            <div class="properties">Breed:</div>
+                            <div class="values">
+                                <p>{{breed}}</p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <div class="properties">Temperament:</div>
+                            <div class="values">
+                        <!-- <p>{{temperament.[1]}}</p> -->
+
                         {{#temperament}}
-                        <p>{{breed}}</p>
+                        <p>{{.}}</p>
+                        {{/temperament}}
                     </div>
-                </section>
-            </div>
-        </div>
-        {{/dogs}}
+                        </section>
+                    </div>
+                </div>
+            {{/dogs}}
         </script>
-        </body>
+
+        <!-- don't forget to link to your handlebars!!-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-        <script src="script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
     </body>
 </html>

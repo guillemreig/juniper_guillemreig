@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Spectral", serif;
+}
+
+.author-info {
+    display: flex;
+    justify-content: center;
+    margin: 150px 0;
+    gap: 50px;
+}
+
+.card {
+    height: 600px;
+    width: 250px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: silver;
+    transition-duration: 300ms;
+    transition-property: all;
+}
+
+.card:hover {
+    margin-top: -50px;
+}
+
+img {
+    width: 100%;
+    height: 250px;
+    float: left;
+    background-color: white;
+    object-fit: cover;
+}
+
+.names {
+    padding: 5px;
+    text-align: center;
+}
+
+.dates,
+h3,
+p {
+    text-align: center;
+}
+
+.books h3 {
+    padding-top: 25px;
+}
+
+.books p {
+    padding-top: 10px;
+}
+
+.quote {
+    padding: 30px 20px;
+    text-align: justify;
+    font-style: italic;
+}
