@@ -2,13 +2,58 @@
     var $headlines = $("#headlines"); // The jQuery div (element)
     console.log("$headlines :", $headlines);
 
-    var $links = $("a"); // The jQuery links (Array-like)
-    console.log("$links :", $links);
+    var $links;
+    var left;
 
-    var left = $headlines.offset().left; // The value of left at the start
-    console.log("left :", left);
+    // Headlines content
 
-    console.log($links.length);
+    var htmlResults = "";
+
+    $.ajax({
+        url: "data.json",
+        method: "GET",
+        data: {
+            limit: 7,
+        },
+        success: function (data) {
+            console.log("data :", data);
+            console.log("data[0] :", data[0]);
+            console.log("data[0].text :", data[0].text);
+
+            data.forEach(function (item) {
+                htmlResults += "<a href=" + item.link + ">" + item.text + "</a>";
+            });
+
+            $headlines.html(htmlResults);
+
+            $links = $("a"); // The jQuery links (Array-like)
+            console.log("$links :", $links);
+
+            left = $headlines.offset().left; // The value of left at the start
+            console.log("left :", left);
+
+            for (var i = 0; i < $links.length; i++) {
+                $links[i].addEventListener("mouseenter", function (e) {
+                    cancelAnimationFrame(reqId);
+                    $(e.target).css({
+                        fontWeight: "bold",
+                        color: "blue",
+                        textDecoration: "underline",
+                    });
+                });
+                $links[i].addEventListener("mouseleave", function (e) {
+                    moveHeadlines();
+                    $(e.target).css({
+                        fontWeight: "",
+                        color: "",
+                        textDecoration: "",
+                    });
+                });
+            }
+
+            setTimeout(moveHeadlines(), 100); // 1. This starts the process
+        },
+    });
 
     // function
     function moveHeadlines() {
@@ -17,36 +62,10 @@
         if (left <= -$links[0].offsetWidth) {
             left = left + $links[0].offsetWidth;
             $headlines.append($links[0]);
-            console.log("Append!");
             $links = $("a"); // Updates $links
         }
 
         $headlines.css({ left: left + "px" });
         reqId = requestAnimationFrame(moveHeadlines); // 2. This keeps it going
     }
-
-    moveHeadlines(); // 1. This starts the process
-
-    for (var i = 0; i < $links.length; i++) {
-        $links[i].addEventListener("mouseenter", function (e) {
-            cancelAnimationFrame(reqId);
-            $(e.target).css({
-                fontWeight: "bold",
-                color: "blue",
-                textDecoration: "underline",
-            });
-        });
-        $links[i].addEventListener("mouseleave", function (e) {
-            moveHeadlines();
-            $(e.target).css({
-                fontWeight: "",
-                color: "",
-                textDecoration: "",
-            });
-        });
-    }
-
-    // Headlines content
-
-    var htmlResults = "";
 })();
