@@ -40,7 +40,9 @@ $searchBtn.on("click", function (e) {
 
 function searchFun(query, type) {
     console.log("Checkpoint 1. New search");
-    console.log("url", url);
+
+    $info.text("Searching...");
+
     $.ajax({
         url: url,
         data: {
@@ -52,23 +54,34 @@ function searchFun(query, type) {
             console.log("Checkpoint 2. data:", data);
 
             // Update info header
-            $info.text('Results for "' + query + '"');
+            if (data.items.length) {
+                $info.text('Results for "' + query + '"');
+            } else {
+                $info.text('No results for "' + query + '"');
+            }
 
             // For each loop
             data.items.forEach(function (item) {
                 // Result division
                 htmlResults += '<div class="resultDiv">';
 
+                console.log(
+                    "item.external_urls.spotify :",
+                    item.external_urls.spotify
+                );
+
                 // Image
                 if (item.images[0]) {
                     // Checks if there is at least one image
                     imageUrl = item.images[0].url;
                     htmlResults +=
-                        '<img class="resultImg" src="' +
+                        "<a href=" +
+                        item.external_urls.spotify +
+                        ' target="_blank"><img class="resultImg" src="' +
                         imageUrl +
                         '" alt="' +
                         item.name +
-                        ' picture" />';
+                        ' picture" /></a>';
                 } else {
                     htmlResults +=
                         '<img class="resultImg" src="https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2/image-size/original?v=mpbl-1&px=-1" alt="no image available" />';
@@ -78,7 +91,12 @@ function searchFun(query, type) {
                 htmlResults += '<div class="resultTxt">';
 
                 // Name
-                htmlResults += '<h2 class="resultName">' + item.name + "</div>";
+                htmlResults +=
+                    "<a href=" +
+                    item.external_urls.spotify +
+                    ' target="_blank"><h2 class="resultName">' +
+                    item.name +
+                    "</h2>";
 
                 // End of divisions
                 htmlResults += "</div></div>";
@@ -87,17 +105,20 @@ function searchFun(query, type) {
             //console.log(htmlResults);
             $results.html(htmlResults);
 
-            $moreBtn.show();
-
             // Modify an url
-            url =
-                data.next &&
-                data.next.replace(
-                    "https://api.spotify.com/v1/search",
-                    "https://spicedify.herokuapp.com/spotify"
-                );
+            if (data.next) {
+                url =
+                    data.next &&
+                    data.next.replace(
+                        "https://api.spotify.com/v1/search",
+                        "https://spicedify.herokuapp.com/spotify"
+                    );
+                console.log("url :", url);
 
-            console.log("url :", url);
+                $moreBtn.show();
+            } else {
+                $moreBtn.hide();
+            }
         },
     });
 }

@@ -12,39 +12,48 @@
     var filteredCountries; // A 4 length array of matching countries
     var $resultsList; // a jQuery object that contains the divs with the filtered country names
     var length; // The length of the $resultsList
+    var timer;
 
     var highlightIndex = -1; // The result currently highlighted. Starts at -1 so that the first element will highlight after an ArrowDown
 
     // Event listeners on $input
     $input
         .on("input", function () {
+            clearTimeout(timer);
+            console.log("clearTimeout(timer) :", timer);
             $resultsDiv.show(); // The results list appears
             var q = this.value; // The text in the input (string) at the moment of the input
+            if (!q) {
+                $resultsDiv.hide();
+                return;
+            }
 
             console.log("Checkpoint 1. q :", q);
+            timer = setTimeout(function () {
+                console.log("Checkpoint 2. Request made");
+                $.ajax({
+                    url: "https://spicedworld.herokuapp.com/",
+                    method: "GET", // Default is 'GET' (optional)
+                    data: {
+                        q: q,
+                    },
+                    success: function (data) {
+                        console.log("Checkpoint 3. Data arrives");
+                        console.log("data :", data);
+                        console.log("$input.val() :", $input.val());
+                        console.log("q :", q);
+                        console.log("q == $input.val() :", q == $input.val());
 
-            $.ajax({
-                url: "https://spicedworld.herokuapp.com/",
-                method: "GET", // Default is 'GET' (optional)
-                data: {
-                    q: q,
-                },
-                success: function (data) {
-                    console.log("Checkpoint 2.");
-                    console.log("data :", data);
-                    console.log("$input.val() :", $input.val());
-                    console.log("q :", q);
-                    console.log("q == $input.val() :", q == $input.val());
-
-                    if ($input.val() === q) {
-                        console.log("Checkpoint 3. data on time");
-                        showResults(data); // Calls function with new array as argument
-                    } else {
-                        console.log("Checkpoint 3. data was late!");
-                        return;
-                    }
-                },
-            });
+                        if ($input.val() === q) {
+                            console.log("Checkpoint 4a. data on time");
+                            showResults(data); // Calls function with new array as argument
+                        } else {
+                            console.log("Checkpoint 4b. data was late!");
+                            return;
+                        }
+                    },
+                });
+            }, 250);
         }) // This runs each time a character is added
         .on("blur", function () {
             $resultsDiv.hide();
@@ -90,7 +99,8 @@
         alert("You must select a valid country name");
     });
 
-    // Function to get a filtered array
+    // Function to get a filtered array (Obsolete)
+    /* 
     function getFilteredCountries(q) {
         if (q === "") {
             return []; // Return empty array if input q empty
@@ -102,7 +112,7 @@
             }) // Returns a new array with elements that pass the check
             .slice(0, 4); // Cuts the array to first 4 items
     }
-
+    */
     // Function to show div with results
     function showResults(filteredCountries) {
         var resultHtml = ""; // A variable that stores the HTML code to write inside the results div
