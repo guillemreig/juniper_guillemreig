@@ -23,14 +23,19 @@
             </div>
             <div id="infoDiv"><h1 id="info"></h1></div>
             <div id="results-container"></div>
+
+            <div class="results-info"></div>
+
             <div id="buttonDiv"><button id="moreBtn">MORE</button></div>
         </div>
 
-        <script
-            src="https://code.jquery.com/jquery-3.6.1.js"
-            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-            crossorigin="anonymous"
-        ></script>
+        <script id="contentId" type="text/x-handlebars-template">
+            {{#items}}
+                <p>{{name}}</p>
+            {{/items}}
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
         <script src="script.js"></script>
     </body>
 </html>

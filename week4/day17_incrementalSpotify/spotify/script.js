@@ -1,7 +1,17 @@
 (function () {
-    // alert("We are connected!");
+    /*
+    /////////// do not touch ////////////
+    Handlebars.templates = Handlebars.templates || {};
 
-    // var $searchBtnDiv = $("#buttonDiv");
+    var templates = document.querySelectorAll(
+        'script[type="text/x-handlebars-template"]'
+    );
+
+    templates.forEach(function (script) {
+        Handlebars.templates[script.id] = Handlebars.compile(script.innerHTML);
+    });
+    /////////// do not touch ////////////
+    */
     var $searchBtn = $("#searchBtn");
     var $moreBtn = $("#moreBtn");
 
@@ -45,12 +55,21 @@
         htmlResults = ""; // New search. Delete the results division content
         $container.html(htmlResults); // Remove old results before loading new ones
 
+        // Decides whether more button or infinite scroll
+        if (location.search.indexOf("scroll=infinite") > -1) {
+            moreButton = false;
+            timer = setTimeout(scrollResults, 1000); // Start the check
+            console.log("Checkpoint 6. setTimeout");
+        } // Checks if it exists
+
         searchFun(query, type);
         return;
     });
 
     function searchFun(query, type) {
         console.log("Checkpoint 1. New search");
+        console.log("nextUrl", nextUrl);
+        request = true;
 
         $info.text("Searching...");
 
@@ -111,12 +130,6 @@
                 //console.log(htmlResults);
                 $container.html(htmlResults);
 
-                // Decides whether more button or infinite scroll
-                if (location.search.indexOf("scroll=infinite") > -1) {
-                    moreButton = false;
-                    timer = setTimeout(scrollResults, 500); // Start the check
-                } // Checks if it exists
-
                 // Modify an url
                 if (data.next) {
                     nextUrl =
@@ -129,6 +142,7 @@
 
                     moreButton && $moreBtn.show();
                 } else {
+                    clearTimeout(timer);
                     $moreBtn.hide();
                 }
 
@@ -160,10 +174,9 @@
         ) {
             console.log("Checkpoint 4. Scroll search");
 
-            request = true;
             searchFun(query, type);
         }
-        timer = setTimeout(scrollResults, 500);
+        timer = setTimeout(scrollResults, 1000);
         return;
     }
 
