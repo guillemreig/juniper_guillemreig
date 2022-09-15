@@ -2,9 +2,7 @@
     /////////// do not touch ////////////
     Handlebars.templates = Handlebars.templates || {};
 
-    var templates = document.querySelectorAll(
-        'script[type="text/x-handlebars-template"]'
-    );
+    var templates = document.querySelectorAll('script[type="text/x-handlebars-template"]');
 
     templates.forEach(function (script) {
         Handlebars.templates[script.id] = Handlebars.compile(script.innerHTML);
