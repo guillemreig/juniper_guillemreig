@@ -54,15 +54,16 @@ logInfo({ name: "Marseille", country: "France", population: 861635 });
 // Pretend that it is 2002 and rewrite the following hipster Javascript so it will work in Internet Explorer 5 and Netscape 4.
 
 //let getNameAndCountry = ({ name, country }) => [name, country];
-/*
+
 let getRelocatedCity = (city1, city2 = { country: "Germany" }) => {
+    console.log("Test :", city2);
     let [, country] = getNameAndCountry(city2);
     return {
         ...city1,
         country,
     };
 };
-*/
+
 ////////
 function getNameAndCountry(object) {
     return [object.name, object.country];
@@ -76,11 +77,15 @@ const cityA = {
 console.log(getNameAndCountry(cityA)); // [ 'Barcelona', 'Spain' ]
 
 /////////
+
+let cityB;
+/*
 const cityB = {
     name: "Paris",
     country: "France",
 };
-
+*/
+/*
 function getRelocatedCity(city1, city2) {
     // 1st. redefines city2 as { country: "Germany" } regardless of its original content/value
     city2 = { country: "Germany" };
@@ -92,8 +97,9 @@ function getRelocatedCity(city1, city2) {
         country: country,
     }; // 3rd. Returns an object with city1 properties, but replaces its 'country' property value for "Germany"
 }
-
+*/
 console.log("Checkpoint", getRelocatedCity(cityA, cityB)); // { name: "Barcelona", country: "Germany" }
 
 console.log("cityA :", cityA);
 console.log("cityB :", cityB);
+// console.log("city2 :", city2);
