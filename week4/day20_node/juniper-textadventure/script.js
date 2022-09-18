@@ -23,6 +23,8 @@ const chalk = require("chalk");
 let color;
 let colorSet = true;
 
+const history = [];
+
 setColor(process.argv[2]);
 
 function setColor(colorChoice) {
@@ -52,61 +54,135 @@ function setColor(colorChoice) {
     return;
 }
 
-// console.log(chalk.blue("Hello world!"));
+// Player stats
+const player = {
+    name: "Will",
+    level: 1,
+    hp: 100,
+    mp: 10,
+    combat: 1,
+    magic: 1,
+    charisma: 1,
+    weapon: "none",
+    armor: "none",
+};
 
-let story = {
-    q: "Welcome to The Land Of Wizards! Would you like to play?",
+const sword = {
+    damage: 5,
+    type: "melee",
+};
+
+const items = {
+    map: "A map of the area",
+};
+
+console.log(items);
+
+// Story
+let lastInput;
+
+let intro = {
+    func: function () {},
+    s: `\nWelcome to the Land of Heinlein! \n
+This is a story of a young adventurer in a land where mythology is more hitory than myth. This is your story.`,
+    q: "Would you like to play?",
     answers: {
         yes: {
-            q: "You are alone in a dark forest and facing a fork in the road. Which direction do you turn?",
+            func: function () {
+                inputStage = true;
+            },
+            q: "What is your name?",
             answers: {
-                left: {
-                    q: "There's a scary wizard! He asks you a tough question. What's 1+1?",
-                    answers: {
-                        2: "congratulations!",
-                    },
-                },
-                right: {
-                    q: "After walking for a while the path turns into a trail. This was not the way.",
-                    answers: {
-                        "go back": "go back",
-                    },
+                func: function () {
+                    inputStage = false;
+                    player.name = lastInput;
+                    console.log(player);
+                    next(story);
                 },
             },
         },
         no: "Alright then. Enjoy your day!",
     },
-    func() {
-        console.log("test!");
+};
+
+let story = {
+    func: function () {
+        console.log("Checkpoint!");
+        if (brooch) {
+            console.log(`Just as you turn to go back to the fork \
+you notice something shining in the ground. \
+It is a nicely crafted ${chalk.yellow("brooch")}. \
+You put it in your pocket.`);
+        }
+    },
+    s: `\nYou are alone in a dark forest and facing a fork in the road.`,
+    q: "Which direction do you turn?",
+    answers: {
+        left: {
+            func: function () {},
+            s: `\nThere's a scary wizard! He asks you a tough question.`,
+            q: "What's 1+1?",
+            answers: {
+                2: "congratulations!",
+            },
+        },
+        right: {
+            func: function () {
+                delete previousStage.answers.right;
+                brooch = true;
+            },
+            s: `\nAfter walking for a while the path turns into a trail.`,
+            q: "This was not the way.",
+            answers: {
+                "go back": "",
+            },
+        },
     },
 };
 
-let stage = story;
+let stage;
 let previousStage;
+let inputStage = false;
+
+// Story vars
+let brooch;
 
 if (!colorSet) {
     rl.question(`Would you like to use a color the information text?:\n[No,${chalk.red("red")},${chalk.yellow("yellow")},${chalk.green("green")},${chalk.cyan("cyan")},${chalk.blue("blue")},${chalk.magenta("magenta")}]\n`, function (userInput) {
         setColor(userInput);
-        next(stage);
+        next(intro);
         return;
     });
 } else {
-    next(stage);
+    next(intro);
 }
 
+// Game function
 function next(stage) {
     if (typeof stage.func === "function") {
         stage.func();
     }
+    stage.s && console.log(stage.s);
 
     rl.question(color(stage.q) + ` [${Object.keys(stage.answers)}] \n`, function (userInput) {
         // Determine if input is valid
+        if (inputStage) {
+            lastInput = userInput;
+            stage.answers.func();
+            return;
+        }
+
         if (!stage.answers.hasOwnProperty(userInput)) {
             next(stage);
             return;
         }
-        // console.log(Object.keys(stage.answers).indexOf(userInput));
+        // go back
+        if (userInput == "go back") {
+            next(previousStage);
+            return;
+        }
         // Go to userInput stage
+        previousStage = stage;
         stage = stage.answers[userInput];
         // Determine if story has ended
         if (typeof stage == "string") {
