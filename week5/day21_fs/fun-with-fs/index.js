@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
+const filesDirPath = path.join(__dirname, "files");
+
 // Part 1
 // Callback version (items listed without order)
 // function logSizes(dirPath) {
@@ -34,7 +36,9 @@ function logSizes(dirPath) {
         dirContents = fs.readdirSync(dirPath, { withFileTypes: true });
 
         for (let item of dirContents) {
-            if (item.isFile()) {
+            if (item.name[0] == ".") {
+                // Used to ignore annoying MacBook files
+            } else if (item.isFile()) {
                 let filePath = path.join(dirPath, item.name);
                 let fileInfo = fs.statSync(filePath);
                 console.log("📄", filePath, fileInfo.size);
@@ -50,6 +54,38 @@ function logSizes(dirPath) {
     }
 }
 
-const fileDirPath = path.join(__dirname, "files");
+logSizes(filesDirPath); // __dirname is always the same
 
-logSizes(fileDirPath); // __dirname is always the same
+// Part 2
+// 2a.
+function mapSizes(dirPath) {
+    try {
+        dirContents = fs.readdirSync(dirPath, { withFileTypes: true });
+        const itemObj = {};
+        for (let item of dirContents) {
+            if (item.name[0] == ".") {
+                // Used to ignore annoying MacBook files
+            } else if (item.isFile()) {
+                let filePath = path.join(dirPath, item.name);
+                let fileInfo = fs.statSync(filePath);
+                itemObj[item.name] = fileInfo.size;
+            } else if (item.isDirectory()) {
+                let folderPath = path.join(dirPath, item.name);
+                itemObj[item.name] = mapSizes(folderPath);
+            }
+        }
+        return itemObj;
+    } catch (err) {
+        console.log(err);
+        return;
+    }
+}
+
+const dirObj = mapSizes(filesDirPath);
+console.log(dirObj);
+
+// 2b.
+var jsonObj = JSON.stringify(dirObj, null, 4);
+console.log(jsonObj);
+
+fs.writeFileSync(`${__dirname}/files.json`, jsonObj);
