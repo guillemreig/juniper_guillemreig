@@ -1,8 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 
-const filesDirPath = path.join(__dirname, "files");
-
 // Part 1
 // Callback version (items listed without order)
 // function logSizes(dirPath) {
@@ -31,15 +29,18 @@ const filesDirPath = path.join(__dirname, "files");
 // }
 
 // Syncronous version (items listed in order)
+
+const filesDirPath = path.join(__dirname, "files");
+
 function logSizes(dirPath) {
     try {
-        dirContents = fs.readdirSync(dirPath, { withFileTypes: true });
+        dirContents = fs.readdirSync(dirPath, { withFileTypes: true }); // Array
 
         for (let item of dirContents) {
             if (item.name[0] == ".") {
                 // Used to ignore annoying MacBook files
             } else if (item.isFile()) {
-                let filePath = path.join(dirPath, item.name);
+                let filePath = path.join(dirPath, item.name); // Gets the item path
                 let fileInfo = fs.statSync(filePath);
                 console.log("📄", filePath, fileInfo.size);
             } else if (item.isDirectory()) {
@@ -54,7 +55,7 @@ function logSizes(dirPath) {
     }
 }
 
-logSizes(filesDirPath); // __dirname is always the same
+logSizes(filesDirPath);
 
 // Part 2
 // 2a.
@@ -82,10 +83,35 @@ function mapSizes(dirPath) {
 }
 
 const dirObj = mapSizes(filesDirPath);
-console.log(dirObj);
+// console.log("dirObj :", dirObj);
 
 // 2b.
 var jsonObj = JSON.stringify(dirObj, null, 4);
 console.log(jsonObj);
 
 fs.writeFileSync(`${__dirname}/files.json`, jsonObj);
+
+// Part 3
+
+(function mapSizesAsync(dirPath) {
+    dirContents = fs.readdir(dirPath, { withFileTypes: true }, (err, dirContents) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        const itemObj = {};
+        for (let item of dirContents) {
+            if (item.name[0] == ".") {
+            } else if (item.isFile()) {
+                let filePath = path.join(dirPath, item.name);
+                let fileInfo = fs.statSync(filePath);
+                itemObj[item.name] = fileInfo.size;
+            } else if (item.isDirectory()) {
+                let folderPath = path.join(dirPath, item.name);
+                itemObj[item.name] = mapSizes(folderPath);
+            }
+        }
+        console.log("itemObj :", itemObj); // Needs to be inside the function because the callback is asyncronous
+        return;
+    });
+})(filesDirPath);
