@@ -37,3 +37,13 @@ const obj2 = { name, country: region };
 
 console.log(obj2); // { name: 'Barcelona', country: 'Catalonia' }
 */
+
+// Part 2
+// Install chalk@4
+
+const chalk = require("chalk");
+
+console.log("boring text");
+console.log(chalk.yellow("add a little color!"));
+console.log(chalk.bgMagenta("Happy Node Day!"));
+console.log(chalk.cyan("so many colours..."));

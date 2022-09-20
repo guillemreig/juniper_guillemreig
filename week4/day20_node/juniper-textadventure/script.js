@@ -5,25 +5,15 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
-///// do not touch /////
-
-/*
-rl.question("Do you enjoy learning Node.js?", function (answer) {
-    if (answer === "yes") {
-        console.log("great!");
-    }
-    rl.close();
-});
-*/
-
-// Choose text adventure color by passing an argument
 
 const chalk = require("chalk");
+///// do not touch /////
 
+// Select name
+
+// Color choice
 let color;
-let colorSet = true;
-
-const history = [];
+let colorSet;
 
 setColor(process.argv[2]);
 
@@ -49,70 +39,55 @@ function setColor(colorChoice) {
             break;
         default:
             color = (txt) => chalk.white(txt);
-            colorSet = false;
+            colorSet = true;
     }
     return;
 }
 
-// Player stats
-const player = {
-    name: "Will",
-    level: 1,
-    hp: 100,
-    mp: 10,
-    combat: 1,
-    magic: 1,
-    charisma: 1,
-    weapon: "none",
-    armor: "none",
-};
+// Player stats and items
 
-const sword = {
-    damage: 5,
-    type: "melee",
+const player = {
+    name: "will",
+    hp: 100,
+    strength: 1,
+    intelligence: 1,
+    charisma: 1,
 };
 
 const items = {
-    map: "A map of the area",
+    gold: 10,
+    map: "A map of the region",
 };
 
-// Story
-let lastInput;
+// Story vars
 
-let intro = {
+let friend = "Leonard";
+let friendShort = "Leo";
+let brooch;
+
+// Story
+
+const intro0 = {
     func: function () {},
     s: `\nWelcome to the Land of Heinlein! \n
 This is a story of a young adventurer in a land where mythology is more history than myth. This is your story.`,
     q: "Would you like to play?",
     answers: {
-        yes: {
-            func: function () {
-                inputStage = true;
-            },
-            q: "What is your name?",
-            answers: {
-                func: function () {
-                    player.name = lastInput;
-                    console.log(player);
-                    next(chapter1);
-                },
-            },
+        yes: () => next(intro1),
+        no: () => {
+            console.log(color("Alright then. Enjoy your day!"));
+            rl.close();
         },
-        no: "Alright then. Enjoy your day!",
     },
 };
 
-let chapter1 = {
+const intro1 = {
     func: function () {
         if (brooch) {
-            console.log(`Just as you turn to go back to the fork \
-you notice something shining in the ground. \
-It is a nicely crafted ${chalk.green("brooch")}. \
-You put it in your pocket.`);
         }
     },
     s: `\nAlthough your journey began some days ago, it was not until you were 
-crossing the forest near ${chalk.cyan("Perthos")} that your choices 
+crossing the forest near ${chalk.cyanBright("Perthos")} that your choices 
 began to shape your future.
 
 It was past sunset that you were still walking through the dark forest. 
@@ -120,92 +95,139 @@ The journey took longer than expected and the darkness caught you off guard.
 Luckily, you shouldn't be far from the nearest Inn.
 
 At some point you reached a fork in the road that didn't appear on your 
-${chalk.green("map")}, and you couldn't see any sign in the dark.
+${chalk.greenBright("map")}, and you couldn't see any sign in the dark.
 
 ${chalk.yellow("[Tip: You can check your inventory by typing 'items' at any moment.]")}`,
     q: "You are alone in a dark forest and facing a fork in the road. Which direction do you turn?",
     answers: {
-        left: {
-            func: function () {},
-            s: `\nThere's a scary wizard! He asks you a tough question.`,
-            q: "What's 1+1?",
-            answers: {
-                2: "congratulations!",
-            },
-        },
-        right: {
-            func: function () {
-                delete previousStage.answers.right;
-                brooch = true;
-            },
-            s: `\nAfter walking for a while the path turns into a trail.`,
-            q: "This was not the way.",
-            answers: {
-                "go back": "",
-            },
+        right: () => next(intro2),
+        left: () => next(intro3),
+    },
+};
+
+const intro2 = {
+    func: function () {
+        delete intro1.answers.right;
+    },
+    s: `\nAfter walking for a while the path turns into a rocky trail, and you know for a fact
+that the path that you were supposed to take is regularly used by travelers on horse.`,
+    q: "This was not the way...",
+    answers: {
+        "go back": () => {
+            brooch = true;
+            console.log(`\nJust as you turn to go back to the fork you notice something shining in the ground.
+It is a nicely crafted ${chalk.greenBright("brooch")}. You put it in your pocket.`);
+            items.brooch = "A brooch found in the forest floor.";
+            next(intro1);
         },
     },
 };
 
-let stage = intro;
-let previousStage;
-let inputStage = false;
+const intro3 = {
+    func: function () {},
+    s: `\nYou take the left path and continue walking in the dark.
+    
+After some time, you notice a distant light in the path ahead. You are not able to recognise what it is, 
+but it definitely isn't the light of another lamp, or torch. You recognise, though, that it's moving, 
+fast, and towards you.
 
-// Story vars
-let brooch;
+${chalk.yellow("[Tip: You can check your stats by typing 'stats' at any moment.]")}`,
+    q: "What will you do?",
+    answers: {
+        fight: () => {
+            player.strength++;
+            console.log(`You are unarmed, so you go grab a big stick on the side of the path and ready yourself.`);
+            next(intro4);
+        },
+        hide: () => {
+            player.intelligence++;
+            console.log(`You don't know wether you can fight or outrun the light, so you decide to hide and let it pass by.`);
+            next(intro4);
+        },
+    },
+};
 
-if (!colorSet) {
-    rl.question(`Would you like to use a color the information text?:\n[No,${chalk.red("red")},${chalk.yellow("yellow")},${chalk.green("green")},${chalk.cyan("cyan")},${chalk.blue("blue")},${chalk.magenta("magenta")}]\n`, function (userInput) {
+const intro4 = {
+    func: function () {
+        if (brooch) {
+            intro4.answers["show him the brooch"] = () => {
+                player.charisma++;
+                console.log(player);
+                next(intro4);
+            };
+        }
+    },
+    s: `But before you can do it the running light speaks.
+    
+${chalk.red(`${friend}!`)}, called the light.
+
+`,
+    q: "Question?",
+    answers: {
+        yes: () => next(intro1),
+        no: () => {
+            console.log(color("Alright then. Enjoy your day!"));
+            rl.close();
+        },
+    },
+};
+
+const template = {
+    func: function () {},
+    s: `\nIntroduction text.`,
+    q: "Question?",
+    answers: {
+        yes: () => next(intro1),
+        no: () => {
+            console.log(color("Alright then. Enjoy your day!"));
+            rl.close();
+        },
+    },
+};
+
+// Choose name
+if (process.argv[3]) {
+    player.name = process.argv[3];
+}
+
+// Choose color
+if (colorSet) {
+    rl.question(`\nDo you have a favorite color?:\n[No,${chalk.red("red")},${chalk.yellow("yellow")},${chalk.green("green")},${chalk.cyan("cyan")},${chalk.blue("blue")},${chalk.magenta("magenta")}]\n`, function (userInput) {
         setColor(userInput);
-        next(intro);
+        next(intro0); // Start the game
         return;
     });
 } else {
-    next(intro);
+    next(intro0); // Start the game
 }
 
 // Game function
 function next(stage) {
-    if (typeof stage.func === "function") {
-        stage.func();
-    }
+    // Write the stage story only once
     stage.s && console.log(stage.s);
-
     delete stage.s;
 
+    // If stage has an opening function, execute it
+    stage.func();
+
+    // readline question function
     rl.question(color(stage.q) + ` [${Object.keys(stage.answers)}] \n`, function (userInput) {
-        // Determine if input is valid
-        if (inputStage) {
-            inputStage = false;
-            lastInput = userInput;
-            stage.answers.func();
-            return;
-        }
-        // Check items
+        // Check items and stats
         if (userInput == "items") {
             console.log(items);
             next(stage);
             return;
+        } else if (userInput == "stats") {
+            console.log(player);
+            next(stage);
+            return;
         }
-
+        // Determine if input is valid
         if (!stage.answers.hasOwnProperty(userInput)) {
             next(stage);
             return;
         }
-        // go back
-        if (userInput == "go back") {
-            next(previousStage);
-            return;
-        }
         // Go to userInput stage
-        previousStage = stage;
-        stage = stage.answers[userInput];
-        // Determine if story has ended
-        if (typeof stage == "string") {
-            console.log(color(stage));
-            rl.close();
-            return;
-        }
-        next(stage);
+        stage.answers[userInput]();
     });
 }

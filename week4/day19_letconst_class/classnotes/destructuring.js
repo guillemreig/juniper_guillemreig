@@ -126,43 +126,89 @@ const s = new Square(5);
 console.log("r :", r);
 console.log("s :", s);
 
-document.writeln("r.getArea() :", r.getArea());
-document.writeln("r.getPerimeter() :", r.getPerimeter());
+console.log("r.getArea() :", r.getArea());
+console.log("r.getPerimeter() :", r.getPerimeter());
 
-document.writeln("s.getArea() :", s.getArea());
-document.writeln("s.getPerimeter() :", s.getPerimeter());
+console.log("s.getArea() :", s.getArea());
+console.log("s.getPerimeter() :", s.getPerimeter());
 
-document.writeln(Rectangle.getObjectType);
+console.log(Rectangle.getObjectType);
 
-document.writeln(Square.amount);
+console.log(Square.amount);
 
-// Destructuring
+// Destructuring //
 
-const arr = [11, 22, 33, 44, 55, 66];
+// Arrays
 
-const [a, b, , c, ...d] = arr; //
+// Array items to variables
+const arr = [1, 2, 3, 4, 5, 6];
 
-document.writeln(a); // 11
-document.writeln(b); // 22
-document.writeln(c); // 44
-document.writeln(d); // 55,66
+const [a, b, , c, ...d] = arr; // You can quickly assign multiple array items to variables by placing each variable to its respective item position.
+// You can skip items with empty ',', and place the remaining items to a single variable with '...'
 
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 4
+console.log(d); // [5, 6]
+
+// Expand arrays
+const firstArr = [1, 2, 3];
+
+const secondArr = [0, ...arr, 4];
+
+secondArr; // [0, 1, 2, 3, 4]
+
+// Array items as function arguments
 function add([a, b]) {
     return a + b;
-}
+} // You can pass an array as a function argument and make the function use its items
 
 console.log(add([3, 4])); // 7
 
+// Array references
+const arr1 = [1, 2, 3];
+const arr2 = arr1; // This does not create a copy. It creates a new reference to the same array
+arr1 == arr2; // true
+
+arr1.push(4);
+console.log(arr1); // [1, 2, 3, 4]
+console.log(arr2); // [1, 2, 3, 4]
+// Any actions applied to arr1 will affect arr2, as they refer to the same array
+
+// Clone an array (truly)
+const arr3 = [1, 2, 3];
+const arr4 = [...arr3]; // This is a cloned array.
+arr3 == arr4; // false
+
+// Objects //
+
+// Properties to variables
 const person = {
     name: "Sven",
     age: 47,
     city: "Berlin",
+    // country: "Germany",
 };
 
-const { name, ...rest } = person;
+const { name, age: num, ...rest } = person; // You can quickly assign property values to variables by using their name as variable name, or placing the variable a a property value
+// You can use '...' to asign the remaining object to a variable
 
 console.log(name); // Sven
-console.log(rest); // {age: 47, city: 'Berlin'}
+console.log(num); // 47
+console.log(rest); // {age: 47, city: 'Berlin', country: 'Germany'}
+
+// We can create object properties from variables
+const firstName = "Leonardo DiCaprio";
+const oscars = 1;
+const age = 43;
+
+const leo = {
+    firstName: firstName,
+    oscars: oscars,
+    age: age,
+};
+
+//
 
 const person2 = {
     name: "Anna",
@@ -170,19 +216,7 @@ const person2 = {
     country: "Germany",
 };
 
-console.log(person2);
-
-// Array references
-
-const arr1 = [1, 2, 3];
-
-const arr2 = arr1; // This does not create a copy. It creates a new reference to the same array
-
-arr1.push(4);
-
-console.log(arr1); // [1, 2, 3, 4]
-console.log(arr2); // [1, 2, 3, 4]
-// arr1 and arr2 variable names refer to the same array
+console.log("person2", person2);
 
 // Miscelaneous
 function getNamedObject(name) {
