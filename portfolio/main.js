@@ -1,13 +1,3 @@
-/////////// do not touch ////////////
-Handlebars.templates = Handlebars.templates || {};
-
-var templates = document.querySelectorAll('script[type="text/x-handlebars-template"]');
-
-templates.forEach(function (script) {
-    Handlebars.templates[script.id] = Handlebars.compile(script.innerHTML);
-});
-/////////// do not touch ////////////
-
 const http = require("http"); // Require 'http' module
 const fs = require("fs"); // Require 'fs' module
 const path = require("path"); // Require 'path' module
@@ -93,7 +83,5 @@ const server = http.createServer((request, response) => {
     // redirect to index.html
     // }
 });
-
-$(".projects-info").html(Handlebars.templates.projectsId(dirContents));
 
 server.listen(8080);
