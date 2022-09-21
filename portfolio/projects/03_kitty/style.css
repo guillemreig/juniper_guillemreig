@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    max-height: 100vmax;
+}
+
+#kittyDiv {
+    height: 100vh;
+    position: relative;
+    overflow: hidden; /* This prevents the images from overflowing outside the container div */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#kittyDiv img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents the image from squeezing */
+    transform: translateX(100%); /* This moves the images outside the screen */
+}
+
+#kittyDiv img.onScreen {
+    transform: translateX(0%); /* This overrides the previous translateX */
+    transition-property: transform;
+    transition-duration: 1s;
+}
+
+#kittyDiv img.onLeft {
+    transform: translateX(-100%);
+    transition-property: transform;
+    transition-duration: 1s;
+}
+
+#kittyDiv img.instantLeft {
+    transform: translateX(-100%);
+}
+
+#kittyDiv img.onRight {
+    transform: translateX(100%);
+    transition-property: transform;
+    transition-duration: 1s;
+}
+
+.dot {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid pink;
+    margin: 10px;
+    transition: background-color 1s ease;
+}
+
+#dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 50px;
+}
+
+.on {
+    background-color: pink;
+}
+
+.dot:hover {
+    cursor: pointer;
+}

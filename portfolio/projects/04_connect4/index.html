@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Connect 4</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="startDiv" class="btnDiv">
+            <h1 id="logo">Connect<span id="four">4</span></h1>
+            <p><button id="startBtn" class="btnSelect">Quick Start</button></p>
+            <p><button id="selectBtn">New Game</button></p>
+        </div>
+        <div id="gameDiv" class="btnDiv">
+            <h1>Choose game type</h1>
+            <p><button id="vsBtn" class="btnSelect">1 vs 1</button></p>
+            <p><button id="aiBtn">1 vs AI</button></p>
+        </div>
+        <div id="readyDiv" class="btnDiv">
+            <h1>Ready?</h1>
+            <p><button id="readyBtn" class="btnSelect">Go!</button></p>
+        </div>
+        <div id="infoDiv" class="btnDiv">
+            <h1> <span id="Yellow">Score:</span><span id="score1">0</span> </h1>
+            <h1 id="infoTxt">Yellow's turn</h1>
+            <h1> <span id="Red">Score:</span><span id="score2">0</span> </h1>
+        </div>
+        <div id="winDiv" class="btnDiv">
+            <h1 id="winTxt">Player wins!</h1>
+            <p><button id="rematchBtn" class="btnSelect">Rematch!</button></p>
+        </div>
+        <div id="selectDiv">
+            <div id="selectCoin" class="coin"></div>
+        </div>
+        <div id="board">
+            <div id="col0" class="colDiv">
+                <div class="slot col0 row0 dia3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row1 dia4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row2 dia5">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row3 dib0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row4 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col0 row5 dib2">
+                    <div class="hole"></div>
+                </div>
+            </div>
+            <div id="col1" class="colDiv">
+                <div class="slot col1 row0 dia2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col1 row1 dia3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col1 row2 dia4 dib0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col1 row3 dia5 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col1 row4 dib2"><div class="hole"></div></div>
+                <div class="slot col1 row5 dib3"><div class="hole"></div></div>
+            </div>
+            <div id="col2" class="colDiv">
+                <div class="slot col2 row0 dia1"><div class="hole"></div></div>
+                <div class="slot col2 row1 dia2 dib0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col2 row2 dia3 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col2 row3 dia4 dib2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col2 row4 dia5 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col2 row5 dib4"><div class="hole"></div></div>
+            </div>
+            <div id="col3" class="colDiv">
+                <div class="slot col3 row0 dia0 dib0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row1 dia1 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row2 dia2 dib2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row3 dia3 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row4 dia4 dib4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col3 row5 dia5 dib5">
+                    <div class="hole"></div>
+                </div>
+            </div>
+            <div id="col4" class="colDiv">
+                <div class="slot col4 row0 dib1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row1 dia0 dib2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row2 dia1 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row3 dia2 dib4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row4 dia3 dib5">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col4 row5 dia4">
+                    <div class="hole"></div>
+                </div>
+            </div>
+            <div id="col5" class="colDiv">
+                <div class="slot col5 row0 dib2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row1 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row2 dia0 dib4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row3 dia1 dib5">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row4 dia2">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col5 row5 dia3">
+                    <div class="hole"></div>
+                </div>
+            </div>
+            <div id="col6" class="colDiv">
+                <div class="slot col6 row0 dib3">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row1 dib4">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row2 dib5">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row3 dia0">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row4 dia1">
+                    <div class="hole"></div>
+                </div>
+                <div class="slot col6 row5 dia2">
+                    <div class="hole"></div>
+                </div>
+            </div>
+        </div>
+        <div id="copyDiv">
+            <p><span>©</span> 1989 2022 REIGGRAU LTD.</p>
+            <p>all rights reserved?</p>
+        </div>
+        <div id="rainDiv1" class="rainDiv">
+            <div class="coin Yellow"></div>
+            <div class="coin Red"></div>
+            <div class="coin Yellow"></div>
+            <div class="coin Red"></div>
+            <div class="coin Yellow"></div>
+            <div class="coin Red"></div>
+            <div class="coin Yellow"></div>
+            <div class="coin Red"></div>
+            <div class="coin Yellow"></div>
+            <div class="coin Red"></div>
+        </div>
+        <div id="rainDiv2" class="rainDiv">
+            <div class="coin2 Yellow2"></div>
+            <div class="coin2 Red2"></div>
+            <div class="coin2 Yellow2"></div>
+            <div class="coin2 Red2"></div>
+            <div class="coin2 Yellow2"></div>
+            <div class="coin2 Red2"></div>
+            <div class="coin2 Yellow2"></div>
+            <div class="coin2 Red2"></div>
+            <div class="coin2 Yellow2"></div>
+            <div class="coin2 Red2"></div>
+            <div class="coin2 Yellow2"></div>
+            <div class="coin2 Red2"></div>
+        </div>
+        <div id="rainDiv3" class="rainDiv">
+            <div class="coin3 Yellow3"></div>
+            <div class="coin3 Red3"></div>
+            <div class="coin3 Yellow3"></div>
+            <div class="coin3 Red3"></div>
+            <div class="coin3 Yellow3"></div>
+            <div class="coin3 Red3"></div>
+            <div class="coin3 Yellow3"></div>
+            <div class="coin3 Red3"></div>
+            <div class="coin3 Yellow3"></div>
+            <div class="coin3 Red3"></div>
+            <div class="coin3 Yellow3"></div>
+            <div class="coin3 Red3"></div>
+            <div class="coin3 Yellow3"></div>
+            <div class="coin3 Red3"></div>
+            <div class="coin3 Yellow3"></div>
+            <div class="coin3 Red3"></div>
+        </div>
+        <div id="screenDiv">
+            <h1 id="pressStart">&lt;PRESS START></PRESS></h1>
+        </div>
+        <div id="audioDiv">
+            <audio id="music1" src="assets/strangerThings8bit.mp3"></audio>
+            <audio id="music2" src="assets/necrodancer8bit.mp3"></audio>
+            <audio id="music3" src="assets/victoryVII8bit.mp3"></audio>
+            <audio id="sfx1" src="assets/select.wav"></audio>
+            <audio id="sfx2" src="assets/fall.wav"></audio>
+            <audio id="sfx3" src="assets/coin.wav"></audio>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.6.1.js"
+            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+            crossorigin="anonymous"
+        ></script>
+        <script src="script.js"></script>
+    </body>
+</html>
