@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "basic-auth": "^2.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6"
+  },
+  "name": "classnotes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
