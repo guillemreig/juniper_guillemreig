@@ -61,8 +61,6 @@ const items = {
 
 // Story vars
 
-let friend = "Leonard";
-let friendShort = "Leo";
 let brooch;
 
 // Story
@@ -106,14 +104,13 @@ ${chalk.yellow("[Tip: You can check your inventory by typing 'items' at any mome
 };
 
 const intro2 = {
-    func: function () {
-        delete intro1.answers.right;
-    },
+    func: function () {},
     s: `\nAfter walking for a while the path turns into a rocky trail, and you know for a fact
 that the path that you were supposed to take is regularly used by travelers on horse.`,
     q: "This was not the way...",
     answers: {
         "go back": () => {
+            delete intro1.answers.right;
             brooch = true;
             console.log(`\nJust as you turn to go back to the fork you notice something shining in the ground.
 It is a nicely crafted ${chalk.greenBright("brooch")}. You put it in your pocket.`);
@@ -150,18 +147,61 @@ ${chalk.yellow("[Tip: You can check your stats by typing 'stats' at any moment.]
 const intro4 = {
     func: function () {
         if (brooch) {
-            intro4.answers["show him the brooch"] = () => {
+            intro5.answers["show him the brooch"] = () => {
                 player.charisma++;
                 console.log(player);
-                next(intro4);
+                next(intro6);
             };
         }
     },
     s: `But before you can do it the running light speaks.
     
-${chalk.red(`${friend}!`)}, called the light.
+${chalk.red(`Lionel!`)}, called the light.
 
-`,
+You turn around and take another look at the flying light, and you notice that behind it is
+the illumined silhouette of an adult bearded man, wearing a long crimson tunic whose golden ornaments
+shine faintly in the dark.
+
+The man eases his pace after noticing you, but still noticeably in a hurry aproaches you while catching 
+his breath. It is then that you realise that this man must be a wizard, and the light orb is his.
+
+${chalk.red(`You!`)}, says the man. ${chalk.red(`Did you see a young man dressed in green on the way here? Answer, quick!`)}`,
+    q: "You did not.",
+    answers: {
+        no: () => {
+            console.log(`\nYou can briefly see the concern in the mage's eyes.`);
+            next(intro5);
+        },
+        "why do you ask?": () => {
+            console.log(`\nThe wizard is dumbfounded by your non-answer.
+            
+${chalk.red("This is an emergency! Did you see him or not?")}, he asks again.`);
+            delete intro4.answers["why do you ask?"];
+            next(intro4);
+        },
+    },
+};
+
+const intro5 = {
+    func: function () {},
+    s: `\n${chalk.red(`Damn it!`)}, the mage curses, then looks around as if thinking what to do.
+    
+${color(`What's going on?`)}, you ask the wizard, clueless about the situation.
+
+The mage then looks at you dead in the eye.
+
+${chalk.red(`A manticore has been spotted in this forest`)}, he says. ${chalk.red(`Just as my assistant was looking for herbs.`)}
+
+Manticores are no joke. They are monsters, and unlike animals they are driven by an unnatural insatiable bloodlust.`,
+    q: "At this moment, the image of the path fork comes to your mind.",
+    answers: {
+        "mention the fork": () => next(intro6),
+    },
+};
+
+const intro6 = {
+    func: function () {},
+    s: `\nIntroduction text.`,
     q: "Question?",
     answers: {
         yes: () => next(intro1),
@@ -208,7 +248,9 @@ function next(stage) {
     delete stage.s;
 
     // If stage has an opening function, execute it
-    stage.func();
+    if (typeof stage.func === "function") {
+        stage.func();
+    }
 
     // readline question function
     rl.question(color(stage.q) + ` [${Object.keys(stage.answers)}] \n`, function (userInput) {

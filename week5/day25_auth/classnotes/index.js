@@ -5,6 +5,10 @@ const express = require("express");
 
 const app = express(); // just a give object giving us all sorts of methods
 
+const { engine } = require("express-handlebars"); // Tell express to use handlebars
+app.engine("handlebars", engine());
+app.set("view engine", "handlebars");
+
 // Require basci auth package
 const basicAuth = require("basic-auth");
 
@@ -28,7 +32,21 @@ app.use(auth); // Version 1
 
 // BODY
 app.get("/", (req, res) => {
-    res.send("<h1>Hi there!</h1>");
+    // res.send("<h1>Hi there!</h1>");
+    const people = require("./people.json");
+
+    // Handlebars
+    res.render("hello", {
+        // Render 'hello' template
+        title: "Hello", // Assign 'Hello' to 'title' variable
+        people,
+        name: "Juniper",
+        animals: ["Cat", "Dog", "Rat"],
+    }); // Render view 'hello'
+    // res.render("hello", { layout: null }); // Don't use the default layout
+
+    // build the screenshot url
+    // <img src="<path tp project>/screenshot.png" alt="project screenshot" />
 });
 
 app.get("/about", (req, res) => {

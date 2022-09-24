@@ -1,0 +1,47 @@
+ 
+Tech program manager
+
+{
+Team configuration:
+-  Product manager
+- Software dev mmanager
+
+- Front end developers
+- Back end developers
+
+- UI/UX designer
+- QA Tester
+}
+
+- Site reliability engineering (SRE)
+- Development operations
+- DEVOPS team
+
+Function
+Product Manager:
+- Liase with stakeholders
+- 
+- Define success metrics for new features
+
+
+QR Tester
+- 
+
+
+Dev Ops
+- Build, test and mantain the infrastructure and tools to allow the speedy development
+- Ensure that systems are safe and secure
+- Monitors the health 
+
+
+
+Scrum master / Agile coach
+- Coaching the team on ways of working efficiently
+- Facilitate the organisation of effective ceremonies
+- Take care of bottlenecks, protect the team from distractions
+
+
+Backend web developers
+
+
+Frontend web developers

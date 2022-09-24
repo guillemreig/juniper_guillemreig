@@ -1,0 +1,11 @@
+<h1>Welcome to Handlebars, {{{name}}}!</h1>
+<ul>
+    {{#people}}
+        <li>{{name}}'s favorite color is {{color}}</li> <!-- iterate through object -->
+    {{/people}}
+</ul>
+<ul>
+    {{#animals}}
+        <li>{{.}}</li> <!-- iterate through an array -->
+    {{/animals}}
+</ul>

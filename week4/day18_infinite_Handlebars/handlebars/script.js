@@ -13,7 +13,7 @@ templates.forEach(function (script) {
 // Get the data
 
 // JS object method
-/*
+
 var authorData = {
     authors: [
         {
@@ -45,24 +45,26 @@ var authorData = {
         },
     ],
 };
-console.log("authorData :", authorData);
-*/
+// console.log("authorData :", authorData);
+console.log(authorData);
+
+$(".author-info").html(Handlebars.templates.authorId(authorData));
 
 // ajax method
-var ajaxData;
+// var ajaxData;
 
-$.ajax({
-    url: "data.json",
-    method: "GET",
-    data: {
-        limit: 3,
-    },
-    success: function (data) {
-        ajaxData = data;
+// $.ajax({
+//     url: "data.json",
+//     method: "GET",
+//     data: {
+//         limit: 3,
+//     },
+//     success: function (data) {
+//         ajaxData = data;
 
-        console.log("ajaxData :", ajaxData);
+//         console.log("ajaxData :", ajaxData);
 
-        // 3rd. Link all 3 elements (div, template & data)
-        $(".author-info").html(Handlebars.templates.authorId(ajaxData));
-    },
-});
+//         // 3rd. Link all 3 elements (div, template & data)
+//         $(".author-info").html(Handlebars.templates.authorId(ajaxData));
+//     },
+// });

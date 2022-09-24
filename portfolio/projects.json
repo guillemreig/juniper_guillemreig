@@ -1,0 +1,26 @@
+[
+    {
+        "name": "HTML lab",
+        "url": "01_html"
+    },
+    {
+        "name": "Ticker",
+        "url": "02_ticker"
+    },
+    {
+        "name": "Kitty Carousel",
+        "url": "03_kitty"
+    },
+    {
+        "name": "Connect 4",
+        "url": "04_connect4"
+    },
+    {
+        "name": "Incremental Search",
+        "url": "05_search"
+    },
+    {
+        "name": "Spotify Search",
+        "url": "06_spotify"
+    }
+]

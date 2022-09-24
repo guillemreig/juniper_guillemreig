@@ -22,9 +22,9 @@ const server = http.createServer((request, response) => {
         response.setHeader("content-type", "text/plain");
         response.statusCode = 200;
         // .pipe version
-        // fs.createReadStream(`${__dirname}/requests.txt`).pipe(response);
+        fs.createReadStream(`${__dirname}/requests.txt`).pipe(response);
         // .readfileSync version
-        response.write(fs.readFileSync(`${__dirname}/requests.txt`));
+        //response.write(fs.readFileSync(`${__dirname}/requests.txt`));
     } else if (request.method === "GET" || request.method === "HEAD") {
         response.setHeader("content-type", "text/html");
         response.statusCode = 200;
