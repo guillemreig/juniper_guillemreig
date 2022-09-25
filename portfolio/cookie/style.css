@@ -1,3 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: lightblue;
+    background-color: grey;
+}
+
+#txtDiv {
+    background-color: white;
+    border-radius: 10px;
+    margin: 200px auto;
+    width: 600px;
+    padding: 20px;
+}
+
+h3 {
+    padding: 0px 30px;
+}
+
+p {
+    padding: 0px 30px;
+}
+
+#buttonDiv {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
 }
