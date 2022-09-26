@@ -1,0 +1,18 @@
+<header id="headerMain">
+    <h1>Welcome to Projects!</h1>
+</header>
+<main id="mainMain">
+    {{#projectsData}}
+        <div class="projectDiv">
+            <div class="imgDiv">
+                <a href="/{{directory}}"><img class="screenshot1" src="/{{directory}}/screenshot1.png" alt="project screenshot" /></a>
+            </div>
+
+            <div class="txtDiv">
+                <a href="/{{directory}}/description"><h1>{{name}}</h1></a>
+                <p>{{description}}</p>
+            </div>
+
+        </div>
+    {{/projectsData}}
+</main>

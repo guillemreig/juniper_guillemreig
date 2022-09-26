@@ -1,0 +1,12 @@
+<div id="projectPage">
+    <nav id="navInfo">
+        <ul>
+            {{#projectsData}}
+            <a href="/{{directory}}/description"><li>{{name}}</li></a>
+            {{/projectsData}}
+        </ul>
+    </nav>
+    <main id="mainInfo">
+        {{> info}}
+    </main>
+</div>

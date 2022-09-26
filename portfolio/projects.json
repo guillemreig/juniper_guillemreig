@@ -1,26 +1,32 @@
 [
     {
         "name": "HTML lab",
-        "url": "01_html"
+        "directory": "01_html",
+        "description": "HTML lab description"
     },
     {
         "name": "Ticker",
-        "url": "02_ticker"
+        "directory": "02_ticker",
+        "description": "Ticker description"
     },
     {
         "name": "Kitty Carousel",
-        "url": "03_kitty"
+        "directory": "03_kitty",
+        "description": "Carousel description"
     },
     {
         "name": "Connect 4",
-        "url": "04_connect4"
+        "directory": "04_connect4",
+        "description": "Connect 4 description"
     },
     {
         "name": "Incremental Search",
-        "url": "05_search"
+        "directory": "05_search",
+        "description": "Search description"
     },
     {
         "name": "Spotify Search",
-        "url": "06_spotify"
+        "directory": "06_spotify",
+        "description": "Spotify description"
     }
 ]
