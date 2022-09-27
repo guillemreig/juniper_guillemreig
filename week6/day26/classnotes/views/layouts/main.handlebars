@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>{{cohortName "Juniper"}}</title>
+    </head>
+    <body>
+        <nav>
+            {{> logo}}
+            <li><a href="/"></a></li>
+            <li><a href="/about"></a></li>
+            <li><a href="/students"></a></li>
+            <li><a href="/memoryGame"></a></li>
+        </nav>
+        <main>
+            {{{body}}}
+        </main>
+        <footer>
+            {{}}
+            Thanks for visiting my website. &copy; Copyright {{getYear}}
+        </footer>
+    </body>
+</html>

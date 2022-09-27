@@ -1,0 +1,32 @@
+[
+    {
+        "name": "HTML lab",
+        "url": "01_html",
+        "isPresent": true
+    },
+    {
+        "name": "Ticker",
+        "url": "02_ticker",
+        "isPresent": true
+    },
+    {
+        "name": "Kitty Carousel",
+        "url": "03_kitty",
+        "isPresent": true
+    },
+    {
+        "name": "Connect 4",
+        "url": "04_connect4",
+        "isPresent": true
+    },
+    {
+        "name": "Incremental Search",
+        "url": "05_search",
+        "isPresent": false
+    },
+    {
+        "name": "Spotify Search",
+        "url": "06_spotify",
+        "isPresent": false
+    }
+]

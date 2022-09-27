@@ -1,12 +1,12 @@
-// know wich PORT I want to run on
+// know which PORT I want to run on
 const PORT = 8080;
-
 // require express
 const express = require("express");
-
-// Create a new instance of express
+// create a new instance of express
 const app = express();
-
+// requiring cookie parser so that we can set cookies
+const cookieParser = require("cookie-parser");
+// requiring path to use path.join
 const path = require("path");
 
 /*

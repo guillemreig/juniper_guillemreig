@@ -1,22 +1,41 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    font-family: "Vinque", sans-serif;
+    text-decoration: none;
 }
 
 /* MAIN PAGE */
 
 #headerMain {
     width: 100vw;
-    height: 60px;
+    height: 40px;
     position: absolute;
     text-align: center;
-    background-color: grey;
+    background-color: rgb(49, 55, 77);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-#mainMain {
+.navBtn {
+    margin: auto 0;
+    cursor: pointer;
+    color: rgb(138, 138, 155);
+}
+
+.navBtn:hover {
+    margin: auto 0;
+    cursor: pointer;
+    color: white;
+    text-shadow: 0 0 5px #00b3ff;
+}
+
+.mainMain {
     padding-top: 80px;
     padding-bottom: 20px;
-    background-color: skyblue;
+    background-color: rgb(19, 19, 35);
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -33,7 +52,7 @@
 
 .projectDiv {
     margin: 0 auto;
-    background-color: cornsilk;
+    background-color: rgb(91, 96, 136);
     width: 80%;
     height: 300px;
     display: flex;
@@ -63,7 +82,6 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    border: 5px solid red;
 }
 
 #navInfo {
@@ -76,7 +94,7 @@
 
 #mainInfo {
     width: 70%;
-    background-color: skyblue;
+    background-color: rgb(19, 19, 35);
 }
 
 .screenshot2 {
