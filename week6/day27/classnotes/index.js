@@ -49,5 +49,3 @@ app.get("/headlines.json", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
-
-// npm i express-handlebars
