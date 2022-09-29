@@ -16,7 +16,7 @@
             console.log("data[0].text :", data[0].text);
 
             data.forEach(function (item) {
-                htmlResults += "<a href=" + item.url + ">" + item.text + "</a>";
+                htmlResults += `<a href=${item.url}>${item.text}<b>${item.name}</b></a>`;
             });
 
             $headlines.html(htmlResults);

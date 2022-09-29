@@ -4,6 +4,23 @@
     font-family: monospace;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-content: center;
+    background-color: #0e0e0e;
+}
+
+img {
+    z-index: -1;
+    position: relative;
+    top: 0;
+    height: 100vh;
+    margin: 0 auto;
+}
+
 #headlines {
     white-space: nowrap;
     position: absolute;
@@ -12,10 +29,11 @@
 
 #ticker {
     overflow-x: hidden;
-    position: relative;
+    position: absolute;
     height: 2em;
     width: 100%;
     border: 3px dotted cornflowerblue;
+    z-index: 1;
 }
 
 #headlines a {

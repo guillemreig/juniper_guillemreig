@@ -17,7 +17,7 @@ app.use(express.static("./ticker"));
 
 // Variables
 
-const screen_nameArr = ["nytimes", "washingtonpost", "TheOnion"];
+const screen_nameArr = ["nytimes", "washingtonpost", "dwnews", "KyivIndependent", "KyivPost", "TheStudyofWar"];
 
 app.get("/headlines.json", (req, res) => {
     console.log("Requesting headlines!");
@@ -32,15 +32,13 @@ app.get("/headlines.json", (req, res) => {
         .then((token) => {
             console.log("token:", token);
 
-            screen_nameArr.forEach((item) => {
-                getTweetsPromise(token, item)
-                    .then((tweets) => {
-                        console.log("filterTweets(tweets) :", filterTweets(tweets));
+            Promise.all(screen_nameArr.map((item) => getTweetsPromise(token, item)))
+                .then((results) => {
+                    console.log("filterTweets(results) :", filterTweets(results));
 
-                        res.json(filterTweets(tweets));
-                    })
-                    .catch((error) => console.log("Error in getTweetsPromise :", error));
-            });
+                    res.json(filterTweets(results));
+                })
+                .catch((error) => console.log("Error in getTweetsPromise :", error));
         })
         .catch((error) => console.log("Error in getToken :", error));
 });

@@ -33,7 +33,7 @@ const getToken = new Promise(function (resolve, reject) {
 const getTweets = function (token, item, callback) {
     const options = {
         host: "api.twitter.com",
-        path: `/1.1/statuses/user_timeline.json?screen_name=${item}&count=2`,
+        path: `/1.1/statuses/user_timeline.json?screen_name=${item}&count=7`,
         method: "GET",
         headers: {
             Authorization: "Bearer " + token,
@@ -61,16 +61,26 @@ const getTweets = function (token, item, callback) {
 };
 
 const filterTweets = function (rawTweets) {
-    const filteredArr = rawTweets.filter((item) => item.entities.urls.length == 1);
+    const flatArr = rawTweets.flat();
 
-    const shortArr = filteredArr.slice(0, 7);
+    const filteredArr = flatArr.filter((item) => item.text.split("https://")[0] && item.entities.urls.length == 1);
+
+    const sortedArr = filteredArr.sort((item1, item2) => {
+        return new Date(item2.created_at).getTime() - new Date(item1.created_at).getTime(); // [ 5, 4, 3, 2, 1 ]
+    });
+
+    const shortArr = sortedArr.slice(0, 7);
 
     const jsonObj = [];
 
     shortArr.forEach((item) => {
+        // console.log("item.text :", item.text);
+        // console.log("item.created_at", item.created_at, "Date :", new Date(item.created_at).getTime());
         jsonObj.push({
             text: item.text.split("https://")[0],
+            name: item.user.name,
             url: item.entities.urls[0].url,
+            date: item.created_at,
         });
     });
 

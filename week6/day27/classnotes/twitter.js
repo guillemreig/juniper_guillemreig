@@ -67,14 +67,9 @@ module.exports.getTweets = function (token, callback) {
 };
 
 module.exports.filterTweets = function (rawTweets) {
-    rawTweets.forEach((item) => {
-        console.log("item.text :", item.text);
-        console.log("item.entities.urls.length :", item.entities.urls.length);
-    });
-
     const filteredArr = rawTweets.filter((item) => item.entities.urls.length == 1);
 
-    const shortArr = filteredArr.slice(0, 7);
+    const shortArr = filteredArr; //.slice(0, 7);
 
     const jsonObj = [];
 
