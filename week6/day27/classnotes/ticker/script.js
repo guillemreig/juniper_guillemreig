@@ -21,7 +21,7 @@
 
             $headlines.html(htmlResults);
 
-            $links = $("a"); // The jQuery links (Array-like)
+            $links = $("a"); // The jQuery links (Array-like)red
             console.log("$links :", $links);
 
             left = $headlines.offset().left; // The value of left at the start

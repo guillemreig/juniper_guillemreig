@@ -1,6 +1,3 @@
-1- Create route for the description page ()
-    - It would have a variable inside ':project'
-    - Loops through the array of project data and finds the one wich matches the project variable .find()
+1- Building engineer
 
-2- Create a template for the description page
-    - Contains a link  to the actual project page
+planned, composed, monitored and supervised multiple architectural projects 

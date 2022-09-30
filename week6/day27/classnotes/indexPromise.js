@@ -22,21 +22,15 @@ const screen_nameArr = ["nytimes", "washingtonpost", "dwnews", "KyivIndependent"
 app.get("/headlines.json", (req, res) => {
     console.log("Requesting headlines!");
 
-    // There are 4 things we want to do
-    // 1- get the token
-    // 2- with the token, make a request for tweets
-    // 3- once we receive the tweets, filter them
-    // 4- send filtered tweets to the client as JSON
-
-    getToken
+    getToken // 1- get the token
         .then((token) => {
             console.log("token:", token);
 
-            Promise.all(screen_nameArr.map((item) => getTweetsPromise(token, item)))
+            Promise.all(screen_nameArr.map((item) => getTweetsPromise(token, item))) // 2- with the token, make a request for tweets
                 .then((results) => {
                     console.log("filterTweets(results) :", filterTweets(results));
 
-                    res.json(filterTweets(results));
+                    res.json(filterTweets(results)); // 3- once we receive the tweets, filter them // 4- send filtered tweets to the client as JSON
                 })
                 .catch((error) => console.log("Error in getTweetsPromise :", error));
         })
